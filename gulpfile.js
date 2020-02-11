@@ -22,8 +22,8 @@ const fs = require('fs')
 const paths = {
   js: ['src/app.js', 'src/**/*.js'],
   html: ['src/**/*.wxml'],
-  style: ['src/**/*.less', 'src/**/*.wxss'],
-  other: ['src/**/*.json', 'src/**/*.wxs', 'src/**/*.{png,svg,jpg,jpeg,gif}'],
+  style: ['src/**/*.less'],
+  other: ['src/**/*.json', 'src/**/*.wxss', 'src/**/*.wxs', 'src/**/*.{png,svg,jpg,jpeg,gif}'],
 }
 
 const webpackConfig = {
