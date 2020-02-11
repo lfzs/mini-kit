@@ -1,0 +1,25 @@
+/*
+wxs 有自己的语法
+https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/
+*/
+
+function leadingZero(_str) {
+  var str = _str.toString()
+  return str[1] ? str : '0' + str
+}
+
+function format(_time, _format) {
+  var time = getDate(_time) //_time 格式需要满足 getDate 函数的传参要求
+  var format = _format || 'YYYY-MM-DD HH:mm:ss'
+  var YYYY = time.getFullYear()
+  var MM = leadingZero(time.getMonth() + 1)
+  var DD = leadingZero(time.getDate())
+  var HH = leadingZero(time.getHours())
+  var mm = leadingZero(time.getMinutes())
+  var ss = leadingZero(time.getSeconds())
+  return format.replace('YYYY', YYYY).replace('MM', MM).replace('DD', DD).replace('HH', HH).replace('mm', mm).replace('ss', ss)
+}
+
+module.exports = {
+  format: format,
+}

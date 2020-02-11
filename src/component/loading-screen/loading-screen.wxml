@@ -1,0 +1,43 @@
+<template wx:if="{{ loading }}" is="loading" />
+<block wx:else>
+  <slot wx:if="{{ status === -1 }}" />
+  <template wx:elif="{{ status === 401 }}" is="login" />
+  <template wx:elif="{{ status === 404 }}" is="error" data="{{ errorInfo }}" />
+  <template wx:else is="retry" />
+</block>
+
+<template name="loading">
+  <scroll-view class="loading-screen">
+    <view class="loading">
+      <image src="/image/icon-loading.gif" class="icon-loading" />
+    </view>
+  </scroll-view>
+</template>
+
+<template name="login">
+  <scroll-view class="loading-screen">
+    <view class="auth">
+      <view class="tips">我们需要获取您的公开信息才能继续为您提供服务，请点击下方“授权”按钮并在弹出的窗口允许授权。</view>
+      <button open-type="getUserInfo" bindgetuserinfo="handleAuth" class="button">微信登陆</button>
+    </view>
+  </scroll-view>
+</template>
+
+<template name="error">
+  <scroll-view class="loading-screen">
+    <view class="error" catchtouchmove="preventTouchmove">
+      <image class="icon-404" src="/image/icon-404.png" />
+      <view class="tips">{{ errorInfo || '找不到该页面' }}</view>
+      <view class="button" bindtap="goHome">回到首页</view>
+    </view>
+  </scroll-view>
+</template>
+
+<template name="retry">
+  <scroll-view class="loading-screen">
+    <view class="retry" bindtap="init" catchtouchmove="preventTouchmove">
+      <image class="icon-disconnect" src="/image/icon-disconnect.png" />
+      <view class="tips">加载失败,点击屏幕重新加载</view>
+    </view>
+  </scroll-view>
+</template>

@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "page/home/home",
+    "page/mine/mine",
+    "page/webview/webview"
+  ],
+  "window": {
+    "navigationBarTitleText": "mini-app"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#fff",
+    "backgroundColor": "#000",
+    "list": [
+      {
+        "pagePath": "page/home/home",
+        "text": "首页"
+      },{
+        "pagePath": "page/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "useExtendedLib": { "weui": true },
+  "usingComponents": {
+    "loading-screen": "/component/loading-screen/loading-screen",
+    "custom-navbar": "/component/custom-navbar/custom-navbar",
+    "mp-icon": "/weui-miniprogram/icon/icon"
+  }
+}

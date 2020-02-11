@@ -1,0 +1,4 @@
+# https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/env.html 根据小程序的运行环境配置
+
+ChromeAndroid >= 68
+iOS >= 12
