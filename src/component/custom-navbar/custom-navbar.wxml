@@ -1,5 +1,5 @@
 <block wx:if="{{ statusBar }}">
-  <view style="height: {{ statusBarHeight }}px; background: {{ statusBarBackground }};" class="position"/>
+  <view style="height: {{ statusBarHeight }}px; background: {{ statusBarBackground }}; top: 0;" class="position"/>
   <view style="height: {{ statusBarHeight }}px;" />
 </block>
 
