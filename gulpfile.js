@@ -32,8 +32,7 @@ const webpackConfig = {
   output: {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
-  },
-  stats: 'errors-only',
+},
 }
 
 function handleError(err) {
@@ -87,7 +86,13 @@ function getNpm() {
       }
     })
     // console.log(entry)
-    Object.keys(entry).length && webpack({ ...webpackConfig, entry }).run(err => { err && console.log(err) })
+    Object.keys(entry).length && webpack({ ...webpackConfig, entry }).run((err, stats) => {
+      if (err || stats.hasErrors()) {
+        console.log(color.red('===================== webpack Error ====================='))
+        console.log(color.red('file '), color.green(file.path))
+        console.log(color.red('entry '), color.green(entry))
+      }
+    })
 
     callback(null, file)
   })
