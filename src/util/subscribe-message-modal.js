@@ -1,4 +1,4 @@
-import { fly, toast } from '@util'
+import { fly } from '@util'
 
 export default function({ title = '', content = '', cancelText = '', confirmText = '确定', tmplIds = [], targetType = '', targetId = '' }) {
   tmplIds = tmplIds.filter(Boolean)
@@ -10,7 +10,7 @@ export default function({ title = '', content = '', cancelText = '', confirmText
     if (acceptIds.length) {
       fly.post('subscribe_records/batch', { targetable_type: targetType, targetable_id: targetId, template_ids: acceptIds })
     } else {
-      toast('订阅失败，可在右上角设置中打开订阅', 3000)
+      wx.showToast({ title: '订阅失败，可在右上角设置中打开订阅', duration: 3000, icon: 'none' })
     }
   }
 

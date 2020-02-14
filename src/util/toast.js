@@ -1,17 +1,7 @@
-export function toast(title, duration = 1500, icon = 'none') {
+export default function toast(title, icon = 'none', duration = 1500, mask = true) {
   wx.hideLoading()
   return new Promise((resolve, reject) => {
-    wx.showToast({
-      title,
-      duration,
-      icon,
-      mask: true,
-      fail: reject,
-    })
+    wx.showToast({ title, icon, duration, mask, fail: reject })
     setTimeout(resolve, duration)
   })
-}
-
-export function successToast(title, duration = 1500) {
-  return toast(title, duration, 'success')
 }
