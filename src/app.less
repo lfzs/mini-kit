@@ -6,44 +6,45 @@ page {
   font-size: 12px;
   line-height: 1.25;
   background-color: #f4f4f4;
-}
-
-page,
-view,
-canvas,
-button,
-input,
-navigator,
-swiper,
-scroll-view {
   box-sizing: border-box;
-}
 
-view,
-text {
-  word-break: break-all;
-}
+  view,
+  canvas,
+  button,
+  input,
+  image,
+  navigator,
+  swiper,
+  picker,
+  scroll-view {
+    box-sizing: border-box;
+    transition: all 0.3s;
+  }
 
-image {
-  vertical-align: middle;
-  transition: all 0.4s;
-  transform-origin: top;
-}
+  view,
+  text {
+    word-break: break-all;
+  }
 
-::-webkit-scrollbar {
-  display: none;
-}
+  image {
+    vertical-align: middle;
+  }
 
-button {
-  .flex-center;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
-  padding: 0;
-  line-height: 1;
-  font-size: 12px;
-  border-radius: 0;
+  button {
+    .flex-center;
 
-  &::after {
-    border: none;
+    padding: 0;
+    line-height: 1.25;
+    font-size: 12px;
+    border-radius: 0;
+
+    &::after {
+      border: none;
+    }
   }
 }
 
