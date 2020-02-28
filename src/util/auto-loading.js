@@ -2,12 +2,12 @@ import { wxp } from '@util'
 
 const ignoreErrors = []
 
-async function loading(promise, title = '加载中', successText, failText, mask = true) {
+async function loading(promise, title = '加载中', successText, failText) {
   try {
-    await wxp.showLoading({ title, mask })
+    await wxp.showLoading({ title, mask: true })
     const res = await promise
     wx.hideLoading()
-    if (successText) wx.showToast({ title: successText, icon: 'success' })
+    if (successText) await wxp.showToast({ title: successText, icon: 'success' })
     return res
   } catch (err) {
     wx.hideLoading()
