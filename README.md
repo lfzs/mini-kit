@@ -20,6 +20,8 @@
 
 ## 注意事项
 
+- 修改 Mobx 的 observable 强制使用 action
+
 - gulp 在新建或者删除文件时，`gulp.watch`并不会执行，需要重新执行 gulp 编译操作
 
 - 集成了 weui (https://developers.weixin.qq.com/miniprogram/dev/extended/weui/) 组件库，使用时在 usingComponents 中声明即可。例： `"mp-icon": "/weui-miniprogram/icon/icon"`

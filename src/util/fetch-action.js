@@ -13,7 +13,7 @@ export default function(target, name, descriptor) { //target 为构造函数
     try {
       const res = yield value.apply(this, args)
       this._state = 'done'
-      return this.data = res.data || res
+      return this.data = res.data || res // 会把 返回值 赋值到 data 上
     } catch (error) {
       this._state = 'error'
       throw error
