@@ -1,5 +1,5 @@
+import { observable, action } from 'mobx'
 import { fetchAction, fly } from '@util'
-import { observable } from 'mobx'
 
 export default new class {
   @observable data = {};
@@ -10,6 +10,7 @@ export default new class {
     return fly.get('user')
   }
 
+  @action
   updateUserInfo(userInfo = {}) {
     if (userInfo.nickName) {
       userInfo.nickname = userInfo.nickName

@@ -1,9 +1,10 @@
 import { computed, observable, flow } from 'mobx'
 
 export default class {
-  @observable state = 'pending'
   @observable data = []
-  @observable meta = { total: 0, page: 1, per_page: 20 }
+
+  state = 'pending'
+  meta = { total: 0, page: 1, per_page: 20 }
 
   fetchApi = new Function() // 传入的 fetchApi 是一个函数 例： fetchApi: param => fly.get('items')
   param = {}

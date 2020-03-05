@@ -1,5 +1,7 @@
-import { autorun, toJS } from 'mobx'
+import { autorun, toJS, configure } from 'mobx'
 import { homePage, nav } from '@util'
+
+configure({ enforceActions: 'always' })
 
 const oldPage = Page
 
