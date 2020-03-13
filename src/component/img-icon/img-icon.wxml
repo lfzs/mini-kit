@@ -1,0 +1,5 @@
+<image
+  src="/image/{{ name }}.{{ ext }}"
+  style="width: {{ size * 2 }}rpx; height:{{ size * 2 }}rpx;"
+  class="custom-class"
+/>

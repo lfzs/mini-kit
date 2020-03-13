@@ -28,6 +28,7 @@
     "custom-navbar": "/component/custom-navbar/custom-navbar",
     "custom-page": "/component/custom-page/custom-page",
     "item-card": "/component/item-card/item-card",
+    "img-icon": "/component/img-icon/img-icon",
     "mp-icon": "/weui-miniprogram/icon/icon"
   }
 }
