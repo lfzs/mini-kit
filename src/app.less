@@ -26,6 +26,7 @@ page {
     word-break: break-all;
   }
 
+  video,
   image {
     vertical-align: middle;
   }
@@ -38,9 +39,19 @@ page {
     .flex-center;
 
     padding: 0;
-    line-height: 1.25;
-    font-size: 12px;
+    line-height: inherit;
+    font-size: inherit;
     border-radius: 0;
+    color: #333;
+    background-color: transparent;
+    font-weight: normal;
+
+    &:not([size='mini']) {
+      min-height: 0;
+      width: auto;
+      margin-left: 0;
+      margin-right: 0;
+    }
 
     &::after {
       border: none;
