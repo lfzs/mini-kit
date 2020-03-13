@@ -6,6 +6,6 @@ export default new class {
 
   @fetchAction
   fetchData() {
-    return fly.get('site_configs')
+    return fly.get('custom_pages/home')
   }
 }
