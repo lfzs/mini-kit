@@ -1,6 +1,6 @@
 @import (css) '../../style/share';
 
-.position {
+.fixed {
   position: fixed;
   z-index: 9999;
   width: 100%;
@@ -11,13 +11,16 @@
   align-items: center;
 }
 
+.slot {
+  flex: 1;
+}
+
 .title {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-  text-align: center;
   font-size: 14px; /* no */
 }
 
@@ -26,8 +29,6 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 110px; /* no */
-  height: 28px; /* no */
 }
 
 .back {
