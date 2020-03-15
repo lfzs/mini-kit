@@ -22,12 +22,14 @@ Component({
   },
 
   methods: {
-    goBack() { goBack() },
+    goBack() { this.data.isTabPage || goBack() },
     preventTouchmove() {},
 
     init() {
       uiStore.setMenuButtonInfo()
-      const { systemInfo: { statusBarHeight, windowWidth }, menuButtonInfo } = uiStore
+      const isIOS = uiStore.isIOS()
+      let { systemInfo: { statusBarHeight, windowWidth }, menuButtonInfo } = uiStore
+      statusBarHeight = statusBarHeight - (isIOS ? 4 : 1) // statusBarHeight 高度不准确
 
       const topGap = menuButtonInfo.top - statusBarHeight // 胶囊顶部和状态栏的间隙
       const rightGap = windowWidth - menuButtonInfo.right // 胶囊右边的间隙
@@ -41,6 +43,7 @@ Component({
         rightGap,
         navHeight,
         windowWidth,
+        isIOS,
         canBack: canBack(),
         isTabPage: isTabPage(),
       })

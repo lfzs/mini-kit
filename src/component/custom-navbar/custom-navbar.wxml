@@ -3,23 +3,23 @@
 
 <view
   class="nav fixed"
-  style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ menuButtonInfo.width + rightGap }}px; padding-left: {{ isTabPage ? 0 : 36 }}px;"
+  style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ menuButtonInfo.width + rightGap }}px;"
   catchtouchmove="preventTouchmove"
 >
-  <view style="height: calc(100% - {{ topGap * 2 }}px);" class="slot">
+  <view style="height: {{ navHeight }}px; padding: 0 7px" class="flex-center" bindtap="goBack">
+    <block wx:if="{{ !isTabPage }}">
+      <mp-icon wx:if="{{ canBack }}" icon="back" color="#fff" size="10" />
+      <mp-icon wx:else icon="home" color="#fff" type="field" size="20" />
+    </block>
+  </view>
+
+  <view style="height: calc(100% - {{ topGap * 2 }}px);" style="{{ title || 'flex: 1' }}">
     <slot />
   </view>
-  <image wx:if="{{ title === 'logo' }}" class="logo" src="/image/logo.png" mode="heightFix" style="height: calc(100% - {{ topGap * 2 }}px)" />
-  <view wx:elif="{{ title }}" class="title text-overflow-1" style="max-width: {{ windowWidth - (menuButtonInfo.width + rightGap) * 2 }}px;">{{ title }}</view>
-</view>
-<view style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px;"  wx:if="{{ nav }}" />
 
-<view
-  wx:if="{{ !isTabPage }}"
-  style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px; width: 36px;"
-  class="back flex-center"
-  bindtap="goBack"
->
-  <mp-icon wx:if="{{ canBack }}" icon="back" color="#fff" size="10" />
-  <mp-icon wx:else icon="home" color="#fff" type="field" size="20" />
+  <image wx:if="{{ title === 'logo' }}" class="logo" src="/image/logo.png" mode="heightFix" style="height: calc(100% - {{ topGap * 2 }}px)" />
+  <view wx:elif="{{ title }}" class="title text-overflow-1 {{ isIOS && 'ios' }}" style="max-width: {{ windowWidth - (menuButtonInfo.width + rightGap) * 2 }}px;">{{ title }}</view>
+
 </view>
+
+<view style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px;"  wx:if="{{ nav }}" />
