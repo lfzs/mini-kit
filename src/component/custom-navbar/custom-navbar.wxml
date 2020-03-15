@@ -1,24 +1,25 @@
-<block wx:if="{{ statusBar }}">
-  <view style="height: {{ statusBarHeight }}px; background: {{ statusBarBackground }}; top: 0;" class="position"/>
-  <view style="height: {{ statusBarHeight }}px;" />
-</block>
+<view style="height: {{ statusBarHeight }}px; background: {{ statusBarBackground }}; top: 0;" class="fixed" />
+<view style="height: {{ statusBarHeight }}px;" wx:if="{{ statusBar }}" />
 
-<block wx:if="{{ nav }}" >
-  <view
-    style="height: {{ menuButtonInfo.totalHeight }}px; top: {{ statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ menuButtonInfo.width + menuButtonInfo.rightGap }}px; padding-left: {{ isTabPage ? 0 : 36 }}px;"
-    class="position nav"
-    catchtouchmove="preventTouchmove"
-  >
+<view
+  class="nav fixed"
+  style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ menuButtonInfo.width + rightGap }}px; padding-left: {{ isTabPage ? 0 : 36 }}px;"
+  catchtouchmove="preventTouchmove"
+>
+  <view style="height: calc(100% - {{ topGap * 2 }}px);" class="slot">
     <slot />
-
-    <block wx:if="{{ title === '-1' }}"/>
-    <view wx:elif="{{ title }}" class="title text-overflow-1" style="max-width: {{ windowWidth - (menuButtonInfo.width + menuButtonInfo.rightGap) * 2 }}px;">{{ title }}</view>
-    <image wx:else src="/image/icon-logo.png" class="logo" style="max-width: {{ windowWidth - (menuButtonInfo.width + menuButtonInfo.rightGap) * 2 }}px;" />
   </view>
-  <view style="height: {{ menuButtonInfo.totalHeight }}px; top: {{ statusBarHeight }}px;" />
-</block>
+  <image wx:if="{{ title === 'logo' }}" class="logo" src="/image/logo.png" mode="heightFix" style="height: calc(100% - {{ topGap * 2 }}px)" />
+  <view wx:elif="{{ title }}" class="title text-overflow-1" style="max-width: {{ windowWidth - (menuButtonInfo.width + rightGap) * 2 }}px;">{{ title }}</view>
+</view>
+<view style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px;"  wx:if="{{ nav }}" />
 
-<view class="back flex-center" bindtap="goBack" wx:if="{{ !isTabPage }}" style="top: {{ statusBarHeight + menuButtonInfo.topGap }}px; height: {{ menuButtonInfo.height }}px; width: 36px;">
+<view
+  wx:if="{{ !isTabPage }}"
+  style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px; width: 36px;"
+  class="back flex-center"
+  bindtap="goBack"
+>
   <mp-icon wx:if="{{ canBack }}" icon="back" color="#fff" size="10" />
-  <mp-icon wx:else icon="home" color="#fff" type="field" />
+  <mp-icon wx:else icon="home" color="#fff" type="field" size="20" />
 </view>

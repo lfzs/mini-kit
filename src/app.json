@@ -5,7 +5,11 @@
     "page/webview/webview"
   ],
   "window": {
-    "navigationBarTitleText": "mini-app"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "mini-app",
+    "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "dark",
+    "onReachBottomDistance": 150
   },
   "tabBar": {
     "color": "#999",

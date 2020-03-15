@@ -14,6 +14,6 @@
   },
   "miniprogramRoot": "./dist/",
   "compileType": "miniprogram",
-  "libVersion": "2.9.5",
+  "libVersion": "2.10.3",
   "appid": "输入appid"
 }

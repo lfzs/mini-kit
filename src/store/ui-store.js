@@ -1,16 +1,38 @@
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 
 export default new class {
-  @observable menuButtonInfo = {} // 用来存储 menuButton 信息，custom-navbar 组件会更新此字段
-  @observable systemInfo = {}
+  @observable custonNavbarHeight = 0 // 自定义导航条的高度(状态栏 + 标题栏)，单位 px
+  menuButtonInfo = {} // 右上角胶囊信息
+  systemInfo = {}
 
   constructor() {
     this.setSystemInfo()
+    this.setMenuButtonInfo()
+  }
+
+  @action
+  setCustonNavbarHeight(height) {
+    this.custonNavbarHeight = height
   }
 
   setSystemInfo() {
     const { platform } = this.systemInfo
-    if (!platform) this.systemInfo = wx.getSystemInfoSync()
+    platform || (this.systemInfo = wx.getSystemInfoSync())
+  }
+
+  setMenuButtonInfo() {
+    const { height } = this.menuButtonInfo
+    if (!height) {
+      let menuButtonInfo = {}
+      try {
+        menuButtonInfo = wx.getMenuButtonBoundingClientRect()
+      } catch (error) {
+        menuButtonInfo = wx.getMenuButtonBoundingClientRect()
+      } finally {
+        menuButtonInfo.height || (menuButtonInfo = wx.getMenuButtonBoundingClientRect())
+      }
+      this.menuButtonInfo = menuButtonInfo
+    }
   }
 
   isIOS() {
