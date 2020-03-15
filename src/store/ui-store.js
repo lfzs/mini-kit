@@ -16,22 +16,25 @@ export default new class {
   }
 
   setSystemInfo() {
-    const { platform } = this.systemInfo
-    platform || (this.systemInfo = wx.getSystemInfoSync())
+    try {
+      this.systemInfo = wx.getSystemInfoSync()
+    } catch (error) {
+      this.systemInfo = wx.getSystemInfoSync()
+    } finally {
+      this.systemInfo.platform || (this.systemInfo = wx.getSystemInfoSync())
+    }
   }
 
   setMenuButtonInfo() {
     const { height } = this.menuButtonInfo
     if (!height) {
-      let menuButtonInfo = {}
       try {
-        menuButtonInfo = wx.getMenuButtonBoundingClientRect()
+        this.menuButtonInfo = wx.getMenuButtonBoundingClientRect()
       } catch (error) {
-        menuButtonInfo = wx.getMenuButtonBoundingClientRect()
+        this.menuButtonInfo = wx.getMenuButtonBoundingClientRect()
       } finally {
-        menuButtonInfo.height || (menuButtonInfo = wx.getMenuButtonBoundingClientRect())
+        this.menuButtonInfo.height || (this.menuButtonInfo = wx.getMenuButtonBoundingClientRect())
       }
-      this.menuButtonInfo = menuButtonInfo
     }
   }
 
@@ -40,7 +43,7 @@ export default new class {
     if (platform) {
       return platform.toUpperCase() === 'IOS'
     } else {
-      this.systemInfo = wx.getSystemInfoSync()
+      this.setSystemInfo()
       return this.systemInfo.platform.toUpperCase() === 'IOS'
     }
   }

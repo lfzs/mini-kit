@@ -11,17 +11,18 @@
   align-items: center;
 }
 
-.slot {
-  flex: 1;
-}
-
 .title {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   color: #fff;
   font-size: 14px; /* no */
+
+  &.ios {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 17px; /* no */
+    font-weight: 600;
+  }
 }
 
 .logo {
@@ -29,9 +30,4 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-}
-
-.back {
-  position: fixed;
-  z-index: 9999;
 }
