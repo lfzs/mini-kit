@@ -41,10 +41,10 @@ export default new class {
   isIOS() {
     const { platform } = this.systemInfo
     if (platform) {
-      return platform.toUpperCase() === 'IOS'
+      return platform.toUpperCase() === 'IOS' || platform.toUpperCase() === 'DEVTOOLS'
     } else {
       this.setSystemInfo()
-      return this.systemInfo.platform.toUpperCase() === 'IOS'
+      return this.systemInfo.platform.toUpperCase() === 'IOS' || platform.toUpperCase() === 'DEVTOOLS'
     }
   }
 }
