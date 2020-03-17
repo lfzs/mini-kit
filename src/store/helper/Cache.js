@@ -3,6 +3,14 @@ export default class {
 
   static findOrCreate(id) {
     const key = `${this.name}${id}`
-    return this.caches[key] = this.caches[key] || { ...new this(), id }
+    let value = this.caches[key]
+
+    if (!value) {
+      value = new this()
+      value.id = id
+      this.caches[key] = value
+    }
+
+    return this.caches[key]
   }
 }
