@@ -7,6 +7,6 @@ export default class ItemDetailStore extends Cache {
 
   @fetchAction
   fetchData() {
-    return fly.get('items')
+    return fly.get(`items/${this.id}`)
   }
 }

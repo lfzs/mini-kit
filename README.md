@@ -22,9 +22,13 @@
 
 - 修改 Mobx 的 observable 强制使用 action
 
+- 当页面使用 store 数据时，在执行 onLoad 前，data 中并没有 store 数据，这一次页面拿到的数据是有问题的。
+当开始执行 onLoad 时，其中注册 autorun 会更新 data，把 store 的放置到 data 中，这一次页面才会真正拿到 store 里的数据。后面更新数据会再次更新 data
+
 - gulp 在新建或者删除文件时，`gulp.watch`并不会执行，需要重新执行 gulp 编译操作
 
-- 集成了 weui (https://developers.weixin.qq.com/miniprogram/dev/extended/weui/) 组件库，使用时在 usingComponents 中声明即可。例： `"mp-icon": "/weui-miniprogram/icon/icon"`
+- 集成了 weui (https://developers.weixin.qq.com/miniprogram/dev/extended/weui/) 组件库，使用时在 usingComponents 中声明即可。
+例： `"mp-icon": "/weui-miniprogram/icon/icon"`
 
 - weui 使用的是 px 做单位
 
