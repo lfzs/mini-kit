@@ -18,7 +18,7 @@
   </view>
 
   <image wx:if="{{ title === 'logo' }}" class="logo" src="/image/logo.png" mode="heightFix" style="height: calc(100% - {{ topGap * 2 }}px)" />
-  <view wx:elif="{{ title }}" class="title text-overflow-1 {{ isIOS && 'ios' }}" style="max-width: {{ windowWidth - (menuButtonInfo.width + rightGap) * 2 }}px;">{{ title }}</view>
+  <view wx:elif="{{ title }}" class="title text-overflow-1" style="max-width: {{ windowWidth - (menuButtonInfo.width + rightGap) * 2 }}px;">{{ title }}</view>
 
 </view>
 
