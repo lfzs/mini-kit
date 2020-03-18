@@ -6,5 +6,5 @@ export uiStore from './ui-store'
 export homeStore from './home-store'
 export ItemDetailStore from './item/item-detail-store'
 export itemListStore from './item/item-list-store'
-export configStore from "./config-store"
+export configStore from './config-store'
 
