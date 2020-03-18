@@ -2,7 +2,7 @@ import { observable, action } from 'mobx'
 import { fetchAction, fly } from '@util'
 
 export default new class {
-  @observable data = {};
+  @observable data = {}
   @observable userInfo = {}
 
   @fetchAction
