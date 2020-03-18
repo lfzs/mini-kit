@@ -17,7 +17,7 @@
 <template name="login">
   <scroll-view class="loading-screen">
     <view class="auth">
-      <view class="tips">我们需要获取您的公开信息才能继续为您提供服务，请点击下方“授权”按钮并在弹出的窗口允许授权。</view>
+      <view class="tips">我们需要获取您的公开信息才能继续为您提供服务，请点击下方按钮并在弹出的窗口允许授权。</view>
       <button open-type="getUserInfo" bindgetuserinfo="handleAuth" class="button">微信登陆</button>
     </view>
   </scroll-view>
