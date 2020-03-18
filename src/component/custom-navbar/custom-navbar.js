@@ -28,11 +28,12 @@ Component({
     init() {
       uiStore.setMenuButtonInfo()
       const isIOS = uiStore.isIOS()
-      const { systemInfo: { statusBarHeight, windowWidth }, menuButtonInfo } = uiStore
+      let { systemInfo: { statusBarHeight, windowWidth }, menuButtonInfo } = uiStore
+      statusBarHeight = statusBarHeight - (isIOS ? 4 : 1) // 误差校正
 
       const topGap = menuButtonInfo.top - statusBarHeight // 胶囊顶部和状态栏的间隙
       const rightGap = windowWidth - menuButtonInfo.right // 胶囊右边的间隙
-      const navHeight = topGap * 2 + menuButtonInfo.height + (isIOS ? 4 : 1) // 导航条的高度(误差校正)
+      const navHeight = topGap * 2 + menuButtonInfo.height // 导航条的高度
 
       uiStore.setCustonNavbarHeight(statusBarHeight + navHeight)
 
