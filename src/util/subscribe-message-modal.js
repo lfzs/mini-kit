@@ -1,6 +1,7 @@
 import { fly, wxp } from '@util'
 
 export default async function({ content = '', confirmText = '确定', tmplIds = [], targetType = '', targetId = '' }) {
+  tmplIds = tmplIds.filter(Boolean)
   if (!tmplIds.length) return wxp.showToast({ title: content, icon: 'none' })
   wx.hideLoading()
 
