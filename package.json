@@ -1,5 +1,5 @@
 {
-  "name": "mini-kit-new",
+  "name": "mini-kit",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -7,6 +7,10 @@
     "staging": "cross-env NODE_ENV=staging gulp build",
     "build": "cross-env NODE_ENV=production gulp build",
     "lint": "gulp lint"
+  },
+  "husky": {
+    "hooks": { "pre-commit": "gulp lint" },
+    "commit-msg": "echo $HUSKY_GIT_PARAMS"
   },
   "license": "MIT",
   "devDependencies": {
@@ -40,6 +44,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-stylelint": "^13.0.0",
+    "husky": "^4.2.3",
     "node-notifier": "^6.0.0",
     "postcss-px2units": "^0.2.0",
     "stylelint": "^13.2.1",
