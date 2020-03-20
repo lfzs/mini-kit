@@ -5,6 +5,7 @@
     "page/webview/webview"
   ],
   "window": {
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "mini-app",
     "backgroundColor": "#f4f4f4",
