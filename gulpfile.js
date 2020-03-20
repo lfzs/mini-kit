@@ -54,7 +54,7 @@ function bundleJS() {
     .pipe(changed('dist'))
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(gulpif(process.env.NODE_ENV !== 'development', eslint.failAfterError()))
+    .pipe(gulpif(process.env.NODE_ENV !== 'development', eslint.failOnError()))
     .pipe(babel())
     .pipe(getNpm())
     .pipe(gulp.dest('dist'))
@@ -139,7 +139,7 @@ function jsLint() {
   return gulp.src(paths.js)
   .pipe(eslint())
   .pipe(eslint.format())
-  .pipe(eslint.failAfterError())
+  .pipe(eslint.failOnError())
 }
 
 function styleLint() {
