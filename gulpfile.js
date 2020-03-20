@@ -139,7 +139,8 @@ function jsLint() {
   return gulp.src(paths.js)
   .pipe(eslint())
   .pipe(eslint.format())
-  .pipe(eslint.failOnError())
+  .pipe(eslint.failAfterError())
+  .pipe(eslint.results(({ warningCount }) => warningCount > 0 && process.exit()))
 }
 
 function styleLint() {
