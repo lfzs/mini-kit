@@ -140,6 +140,7 @@ function jsLint() {
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(eslint.failAfterError())
+  .pipe(eslint.results(({ warningCount }) => warningCount > 0 && process.exit()))
 }
 
 function styleLint() {
