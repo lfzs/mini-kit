@@ -5,12 +5,17 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development gulp dev",
     "staging": "cross-env NODE_ENV=staging gulp build",
-    "build": "cross-env NODE_ENV=production gulp build",
-    "lint": "gulp lint"
+    "build": "cross-env NODE_ENV=production gulp build"
   },
   "husky": {
-    "hooks": { "pre-commit": "gulp lint" },
+    "hooks": {
+      "pre-commit": "lint-staged"
+    },
     "commit-msg": "echo $HUSKY_GIT_PARAMS"
+  },
+  "lint-staged": {
+    "*.less": "stylelint",
+    "*.js": "eslint"
   },
   "license": "MIT",
   "devDependencies": {
@@ -45,6 +50,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-stylelint": "^13.0.0",
     "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "node-notifier": "^6.0.0",
     "postcss-px2units": "^0.2.0",
     "stylelint": "^13.2.1",
