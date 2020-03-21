@@ -1,3 +1,4 @@
+/* eslint-disable */
 const gulp = require('gulp')
 const debug = require('gulp-debug')
 const changed = require('gulp-changed')
@@ -17,7 +18,6 @@ const cssnano = require('cssnano')
 const webpack = require('webpack')
 const through = require('through2')
 const path = require('path')
-const fs = require('fs')
 
 const paths = {
   js: ['src/app.js', 'src/**/*.js'],
@@ -26,13 +26,15 @@ const paths = {
   other: ['src/**/*.json', 'src/**/*.wxss', 'src/**/*.wxs', 'src/**/*.{png,svg,jpg,jpeg,gif}'],
 }
 
+const isDev = process.env.NODE_ENV === 'development'
+
 const webpackConfig = {
   // mode: process.env.NODE_ENV === 'development' ? 'development' : 'production', devtool: false,
   mode: 'production',
   output: {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
-},
+  },
 }
 
 function handleError(err) {
@@ -44,7 +46,7 @@ function handleError(err) {
 
   notifier.notify({
     title: `${err.plugin}错误`,
-    message: err.fileName
+    message: err.fileName,
   })
   this.emit('end')
 }
@@ -54,7 +56,8 @@ function bundleJS() {
     .pipe(changed('dist'))
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(gulpif(process.env.NODE_ENV !== 'development', eslint.failOnError()))
+    .pipe(gulpif(!isDev, eslint.failAfterError()))
+    .pipe(gulpif(!isDev, eslint.results(({ warningCount }) => warningCount > 0 && process.exit())))
     .pipe(babel())
     .pipe(getNpm())
     .pipe(gulp.dest('dist'))
@@ -64,11 +67,11 @@ function bundleJS() {
 const tempNames = {}
 function getNpm() {
   return through.obj((file, encoding, callback) => {
-    if(!file.isBuffer()) return callback(null, file)
+    if (!file.isBuffer()) return callback(null, file)
     const contents = file.contents.toString()
 
     const zIndex = path.relative(file.dirname, file.base).replace(/\\/g, '/')
-    const newContents = contents.replace(/require\("(?!\.)/g, `require("${zIndex || '.' }/`) // 非形如 ./ ../ 开头
+    const newContents = contents.replace(/require\("(?!\.)/g, `require("${zIndex || '.'}/`) // 非形如 ./ ../ 开头
     file.contents = Buffer.from(newContents)
 
     const reg = /require\((.*?)\)/g
@@ -81,7 +84,7 @@ function getNpm() {
         // console.log(_name)
         if (!tempNames[_name]) {
           tempNames[_name] = _name
-          entry[_name] =  _name
+          entry[_name] = _name
         }
       }
     })
@@ -102,13 +105,13 @@ function bundleLess() {
   return gulp.src(paths.style)
     .pipe(changed('dist', { extension: '.wxss' }))
     .pipe(stylelint({
-      failAfterError: process.env.NODE_ENV !== 'development',
+      failAfterError: !isDev,
       reporters: [{ formatter: 'string', console: true }],
     }))
     .pipe(less({ globalVars: require('./src/style/less-var.js') }))
     .on('error', handleError)
     .pipe(postcss(
-      [px2units({ multiple: 2 }), autoprefixer()].concat(process.env.NODE_ENV === 'development' ? [] : cssnano())
+      [px2units({ multiple: 2 }), autoprefixer()].concat(isDev ? [] : cssnano())
     ))
     .pipe(rename({ extname: '.wxss' }))
     .pipe(gulp.dest('dist'))
@@ -135,22 +138,6 @@ function clean() {
   return del('dist')
 }
 
-function jsLint() {
-  return gulp.src(paths.js)
-  .pipe(eslint())
-  .pipe(eslint.format())
-  .pipe(eslint.failAfterError())
-  .pipe(eslint.results(({ warningCount }) => warningCount > 0 && process.exit()))
-}
-
-function styleLint() {
-  return gulp.src(paths.style)
-  .pipe(stylelint({
-    failAfterError: true,
-    reporters: [{ formatter: 'string', console: true }],
-  }))
-}
-
 function watch() {
   gulp.watch(paths.js, gulp.series(bundleJS))
   gulp.watch(paths.style, gulp.series(bundleLess))
@@ -160,4 +147,3 @@ function watch() {
 
 gulp.task('dev', gulp.series(clean, gulp.parallel(bundleLess, copyWxml, copyOther, bundleJS), watch))
 gulp.task('build', gulp.series(clean, gulp.parallel(bundleLess, copyWxml, copyOther, bundleJS)))
-gulp.task('lint', gulp.parallel(jsLint, styleLint))

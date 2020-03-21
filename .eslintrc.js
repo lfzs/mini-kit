@@ -45,7 +45,7 @@ module.exports = {
     'no-console': 2,
     'no-empty': [2, { 'allowEmptyCatch': true }],
     'no-lone-blocks': 2,
-    'no-multiple-empty-lines': [2, { 'max': 1 }],
+    'no-multiple-empty-lines': [2, { 'max': 1, 'maxEOF': 1, 'maxBOF': 1, }],
     'no-multi-spaces': 2,
     'no-new-wrappers': 2,
     'no-return-await': 2,
