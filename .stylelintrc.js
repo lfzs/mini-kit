@@ -4,6 +4,6 @@ module.exports = {
     'color-hex-length': null,
     'selector-type-no-unknown': null,
     'string-quotes': 'single',
-    'no-empty-first-line': true
-  }
+    'no-empty-first-line': true,
+  },
 }

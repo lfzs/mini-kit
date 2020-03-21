@@ -1,6 +1,4 @@
-/* eslint-disable */
 const gulp = require('gulp')
-const debug = require('gulp-debug')
 const changed = require('gulp-changed')
 const eslint = require('gulp-eslint')
 const gulpif = require('gulp-if')
@@ -38,11 +36,13 @@ const webpackConfig = {
 }
 
 function handleError(err) {
+  /* eslint-disable */
   console.log(color.red('===================== Error Start ====================='))
   console.log(color.red('    line: '), color.green(err.lineNumber))
   console.log(color.red('  plugin: '), color.green(err.plugin))
   console.log(color.red(' message: '), color.green(err.message))
   console.log(color.red('=====================  Error End  ====================='))
+  /* eslint-enable */
 
   notifier.notify({
     title: `${err.plugin}错误`,
@@ -61,7 +61,6 @@ function bundleJS() {
     .pipe(babel())
     .pipe(getNpm())
     .pipe(gulp.dest('dist'))
-    // .pipe(debug({ title: 'js编译', showCount: false }))
 }
 
 const tempNames = {}
@@ -91,9 +90,11 @@ function getNpm() {
     // console.log(entry)
     Object.keys(entry).length && webpack({ ...webpackConfig, entry }).run((err, stats) => {
       if (err || stats.hasErrors()) {
+        /* eslint-disable */
         console.log(color.red('===================== webpack Error ====================='))
         console.log(color.red('file '), color.green(file.path))
         console.log(color.red('entry '), color.green(entry))
+        /* eslint-enable */
       }
     })
 
@@ -115,7 +116,6 @@ function bundleLess() {
     ))
     .pipe(rename({ extname: '.wxss' }))
     .pipe(gulp.dest('dist'))
-    // .pipe(debug({ title: 'less编译', showCount: false }))
 }
 
 function copyWxml() {
@@ -123,7 +123,6 @@ function copyWxml() {
     .pipe(changed('dist'))
     .on('error', handleError)
     .pipe(gulp.dest('dist'))
-    // .pipe(debug({ title: '复制wxml文件', showCount: false }))
 }
 
 function copyOther() {
@@ -131,7 +130,6 @@ function copyOther() {
     .pipe(changed('dist'))
     .on('error', handleError)
     .pipe(gulp.dest('dist'))
-    // .pipe(debug({ title: '复制other文件', showCount: false }))
 }
 
 function clean() {
