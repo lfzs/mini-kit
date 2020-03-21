@@ -2,20 +2,20 @@ module.exports = {
   'extends': [
     'eslint:recommended',
     'plugin:import/errors',
-    'plugin:import/warnings'
+    'plugin:import/warnings',
   ],
 
   'parser': 'babel-eslint',
   'parserOptions': {
     'sourceType': 'module',
     'ecmaFeatures': {
-      'legacyDecorators': true
-    }
+      'legacyDecorators': true,
+    },
   },
 
   'env': {
     'es6': true,
-    'node': true
+    'node': true,
   },
 
   'rules': {
@@ -45,7 +45,7 @@ module.exports = {
     'no-console': 2,
     'no-empty': [2, { 'allowEmptyCatch': true }],
     'no-lone-blocks': 2,
-    'no-multiple-empty-lines': [2, { 'max': 1, 'maxEOF': 1, 'maxBOF': 1, }],
+    'no-multiple-empty-lines': [2, { 'max': 1, 'maxEOF': 1, 'maxBOF': 1 }],
     'no-multi-spaces': 2,
     'no-new-wrappers': 2,
     'no-return-await': 2,
@@ -77,6 +77,6 @@ module.exports = {
     'getApp': true,
     'Page': true,
     'Component': true,
-    'getCurrentPages': true
-  }
+    'getCurrentPages': true,
+  },
 }

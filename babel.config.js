@@ -18,6 +18,6 @@ module.exports = {
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-nullish-coalescing-operator',
-    ["transform-inline-environment-variables", { "include": ["NODE_ENV"] }],
-  ]
+    ['transform-inline-environment-variables', { 'include': ['NODE_ENV'] }],
+  ],
 }
