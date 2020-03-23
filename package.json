@@ -5,7 +5,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development gulp dev",
     "staging": "cross-env NODE_ENV=staging gulp build",
-    "build": "cross-env NODE_ENV=production gulp build"
+    "build": "cross-env NODE_ENV=production gulp build",
+    "deploy:staging": "node script/miniprogram-ci.js staging",
+    "deploy:production": "node script/miniprogram-ci.js production"
   },
   "husky": {
     "hooks": {
@@ -50,6 +52,7 @@
     "gulp-stylelint": "^13.0.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
+    "miniprogram-ci": "^1.0.11",
     "node-notifier": "^6.0.0",
     "postcss-px2units": "^0.2.0",
     "stylelint": "^13.2.1",
