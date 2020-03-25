@@ -2,5 +2,5 @@ import { List } from '@store'
 import { fly } from '@util'
 
 export default new class extends List {
-  fetchApi = () => fly.get('items')
+  fetchApi = params => fly.get('items', params)
 }

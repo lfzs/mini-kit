@@ -4,6 +4,15 @@
     "page/mine/mine",
     "page/webview/webview"
   ],
+  "subpackages": [
+    {
+      "root": "page-order",
+      "pages": ["list/list"]
+    }
+  ],
+  "preloadRule": {
+    "page/mine/mine": { "network": "all", "packages": ["page-order"] }
+  },
   "window": {
     "navigationBarBackgroundColor": "#000",
     "navigationBarTextStyle": "white",
