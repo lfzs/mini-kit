@@ -1,4 +1,5 @@
 import { computed, observable, flow } from 'mobx'
+import { fly } from '@util'
 
 export default class {
   @observable data = []
@@ -6,13 +7,13 @@ export default class {
   state = 'pending'
   meta = { total: 0, page: 1, per_page: 20 }
 
-  fetchApi = new Function() // 传入的 fetchApi 是一个函数 例： fetchApi: param => fly.get('items')
+  api = ''
   param = {}
 
   fetchData = flow(function* () {
     this.state = 'pending'
     try {
-      const { data, meta } = yield this.fetchApi({ page: 1, per_page: this.meta.per_page, ...this.param })
+      const { data, meta } = yield fly.get(this.api, { page: 1, per_page: this.meta.per_page, ...this.param })
       this.data = data
       this.meta = meta
       this.state = 'done'
@@ -31,7 +32,7 @@ export default class {
 
     this.state = 'pending'
     try {
-      const { data, meta } = yield this.fetchApi({ page: this.meta.page + 1, per_page: this.meta.per_page, ...this.param })
+      const { data, meta } = yield fly.get(this.api, { page: this.meta.page + 1, per_page: this.meta.per_page, ...this.param })
       this.data.push(...data)
       this.meta = meta
       this.state = 'done'
