@@ -6,7 +6,7 @@ configure({ enforceActions: 'always' })
 const oldPage = Page
 
 Page = (config = {}) => {
-  const { onLoad, onReady, onHide, onShow, onUnload, onShareAppMessage, store } = config
+  const { onLoad, onReady, onHide, onShow, onUnload, onShareAppMessage, onReachBottom, store } = config
 
   const transformLifeTime = {
 
@@ -48,6 +48,10 @@ Page = (config = {}) => {
       } else {
         return { title, path: homePage, imageUrl }
       }
+    },
+
+    onReachBottom() {
+      onReachBottom && onReachBottom.call(this)
     },
   }
 
