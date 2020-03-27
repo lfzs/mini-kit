@@ -11,6 +11,10 @@ Component({
     title: String,
   },
 
+  observers: {
+    'title': function(title) { wx.setNavigationBarTitle({ title }) },
+  },
+
   lifetimes: {
     attached() { this.init() },
   },

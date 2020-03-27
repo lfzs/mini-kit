@@ -1,9 +1,21 @@
 import './util/page'
+import { MEMORY_WARNING_LEVEL } from '@util'
 
 App({
 
+  onLaunch() {
+    this.onMemoryWarning()
+  },
+
   onShow() {
     this.checkUpdateManager()
+  },
+
+  onMemoryWarning() {
+    wx.onMemoryWarning(({ level }) => {
+      const logger = wx.getRealtimeLogManager()
+      logger.warn(`【memoryWarning】${level}: ${MEMORY_WARNING_LEVEL[level]}`)
+    })
   },
 
   // 新版本提示
