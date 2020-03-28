@@ -46,6 +46,7 @@
     "img-icon": "/component/img-icon/img-icon",
     "img-slim": "/component/img-slim/img-slim",
     "beansmile": "/component/beansmile/beansmile",
+    "count-down": "/component/count-down/count-down",
     "mp-icon": "/weui-miniprogram/icon/icon"
   }
 }
