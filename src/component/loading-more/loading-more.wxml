@@ -1,0 +1,11 @@
+<view class="empty" wx:if="{{ listStatus.isEmpty }}">{{ emptyText }}</view>
+
+<view class="noMore" wx:elif="{{ listStatus.isNoMore }}">
+  <view class="line" />
+  <text>{{ reachBottomText }}</text>
+  <view class="line" />
+</view>
+
+<view class="loading" wx:else>
+  <mp-loading />
+</view>
