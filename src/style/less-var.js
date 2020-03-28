@@ -2,4 +2,5 @@
 module.exports = {
   primary: 'red',
   bg: '#f4f4f4',
+  darkgray: '#a9a9a9',
 }
