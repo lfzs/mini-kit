@@ -1,1 +1,2 @@
-<text class="custom-class" wx:if="{{ time }}">{{ time }}</text>
+<wxs src="../../wxs/time.wxs" module="T" />
+<block wx:if="{{ second }}">{{ T.formatSecond(second) }}</block>
