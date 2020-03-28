@@ -72,7 +72,7 @@ export default class {
   get listStatus() {
     return {
       isNoMore: this.state === 'done' && this.data.length && this.data.length >= this.meta.total,
-      isLoadingMore: this.state === 'pending' && this.data.length,
+      isLoading: this.state === 'pending' && !!this.data.length,
       isEmpty: this.state !== 'pending' && !this.data.length,
     }
   }
