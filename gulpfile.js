@@ -19,8 +19,8 @@ const path = require('path')
 
 const paths = {
   js: ['src/app.js', 'src/**/*.js'],
-  html: ['src/**/*.wxml'],
-  style: ['src/**/*.less'],
+  less: ['src/**/*.less'],
+  wxml: ['src/**/*.wxml'],
   other: ['src/**/*.json', 'src/**/*.wxss', 'src/**/*.wxs', 'src/**/*.{png,svg,jpg,jpeg,gif}'],
 }
 
@@ -103,7 +103,7 @@ function getNpm() {
 }
 
 function bundleLess() {
-  return gulp.src(paths.style)
+  return gulp.src(paths.less)
     .pipe(changed('dist', { extension: '.wxss' }))
     .pipe(stylelint({
       failAfterError: !isDev,
@@ -119,7 +119,7 @@ function bundleLess() {
 }
 
 function copyWxml() {
-  return gulp.src(paths.html)
+  return gulp.src(paths.wxml)
     .pipe(changed('dist'))
     .on('error', handleError)
     .pipe(gulp.dest('dist'))
@@ -138,8 +138,8 @@ function clean() {
 
 function watch() {
   gulp.watch(paths.js, gulp.series(bundleJS))
-  gulp.watch(paths.style, gulp.series(bundleLess))
-  gulp.watch(paths.html, gulp.series(copyWxml))
+  gulp.watch(paths.less, gulp.series(bundleLess))
+  gulp.watch(paths.wxml, gulp.series(copyWxml))
   gulp.watch(paths.other, gulp.series(copyOther))
 }
 
