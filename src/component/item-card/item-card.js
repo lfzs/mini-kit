@@ -1,3 +1,4 @@
+// 商品展示
 import { nav } from '@util'
 
 Component({

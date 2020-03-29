@@ -39,14 +39,9 @@
   "useExtendedLib": { "weui": true },
   "usingComponents": {
     "loading-screen": "/component/loading-screen/loading-screen",
-    "custom-navbar": "/component/custom-navbar/custom-navbar",
     "custom-page": "/component/custom-page/custom-page",
     "item-card": "/component/item-card/item-card",
-    "upload-image": "/component/upload-image/upload-image",
     "img-icon": "/component/img-icon/img-icon",
-    "img-slim": "/component/img-slim/img-slim",
-    "beansmile": "/component/beansmile/beansmile",
-    "count-down": "/component/count-down/count-down",
     "loading-more": "/component/loading-more/loading-more",
     "mp-icon": "/weui-miniprogram/icon/icon",
     "mp-loading": "/weui-miniprogram/loading/loading"

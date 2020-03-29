@@ -1,3 +1,4 @@
+// 倒计时
 Component({
   properties: {
     end: String,

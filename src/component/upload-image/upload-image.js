@@ -1,6 +1,7 @@
 import { autoLoading, toast } from '@util'
 import { configStore } from '@store'
 
+// 上传图片
 Component({
   externalClasses: ['custom-class'],
 

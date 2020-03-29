@@ -1,3 +1,4 @@
+// 页脚声明
 Component({
 
   properties: {

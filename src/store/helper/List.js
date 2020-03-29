@@ -43,11 +43,11 @@ export default class {
   })
 
   findItemById(id) {
-    return this.data.find(item => item.id === +id)
+    return this.data.find(item => +item.id === +id)
   }
 
   findIndexById(id) {
-    return this.data.findIndex(item => item.id === +id)
+    return this.data.findIndex(item => +item.id === +id)
   }
 
   removeItemById(id) {
@@ -59,7 +59,7 @@ export default class {
   }
 
   replaceItem(newItem) {
-    const index = this.data.findIndex(item => item.id === newItem.id)
+    const index = this.data.findIndex(item => +item.id === +newItem.id)
     if (index > -1) this.data.splice(index, 1, newItem)
   }
 
