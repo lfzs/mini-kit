@@ -1,3 +1,4 @@
+// 图片瘦身
 Component({
   externalClasses: ['custom-class'],
 

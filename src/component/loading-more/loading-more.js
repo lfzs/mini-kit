@@ -1,3 +1,4 @@
+// 列表滚动加载底部状态
 Component({
   properties: {
     listStatus: Object,
@@ -5,7 +6,7 @@ Component({
 
     reachBottomText: {
       type: String,
-      value: '已经到底了',
+      value: '到底了',
     },
   },
 })

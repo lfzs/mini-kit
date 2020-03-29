@@ -1,3 +1,4 @@
+// 拦截页面的 onLoad
 import { tokenStore, userStore } from '@store'
 import { goHome, autoLoading } from '@util'
 
