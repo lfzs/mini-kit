@@ -1,2 +1,0 @@
-<button class="custom-class" wx:if="{{ canSaveImg }}" bindtap="emitSaveImg">{{ text }}</button>
-<button class="custom-class" wx:else bindtap="openSetting" >{{ text }}</button>
