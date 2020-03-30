@@ -47,4 +47,14 @@ export default new class {
       return this.systemInfo.platform.toUpperCase() === 'IOS' || platform.toUpperCase() === 'DEVTOOLS'
     }
   }
+
+  isIPX() {
+    const { model } = this.systemInfo
+    if (model) {
+      return model.toUpperCase().indexOf('IPHONE X') > -1
+    } else {
+      this.setSystemInfo()
+      return this.systemInfo.model.toUpperCase().indexOf('IPHONE X') > -1
+    }
+  }
 }

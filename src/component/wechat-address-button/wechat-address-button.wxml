@@ -1,2 +1,0 @@
-<button class="custom-class" wx:if="{{ canGetWechatAddress }}" bindtap="emitAddress">{{ text }}</button>
-<button class="custom-class" wx:else bindtap="openSetting" >{{ text }}</button>
