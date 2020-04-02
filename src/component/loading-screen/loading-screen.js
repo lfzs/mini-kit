@@ -1,5 +1,5 @@
 // 拦截页面的 onLoad
-import { tokenStore, userStore } from '@store'
+import { tokenStore } from '@store'
 import { goHome, autoLoading } from '@util'
 
 Component({
@@ -20,7 +20,7 @@ Component({
 
   pageLifetimes: {
     show() {
-      if (this.data.status === 401 && userStore.userInfo.nickName) return this.init() // 其他页面授过权,更新当前页面 => 根据当前页面是401 和 是否有用户信息
+      this.data.status === 401 && tokenStore.getToken() && this.init() // 其他页面授过权,更新当前页面
     },
   },
 
