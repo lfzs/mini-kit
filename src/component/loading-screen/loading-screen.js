@@ -33,7 +33,7 @@ Component({
         await currentPage._init()
         this.setData({ status: -1 })
       } catch (e) {
-        console.log(e) //eslint-disable-line no-console
+        console.log(e) // eslint-disable-line no-console
         this.setData({ status: e.status || -1 })
       } finally {
         this.setData({ loading: false })

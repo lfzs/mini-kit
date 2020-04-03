@@ -1,6 +1,6 @@
 export fetchAction from './fetch-action'
 export { host } from './env'
-export { wxp } from '@minapp/wx/wxp'
+export wxp from './wxp'
 export apiIsAuth from './api-is-auth'
 export * from './constant'
 export { nav, goBack, goHome, homePage, getCurrentPage, isTabPage, canBack } from './nav'
