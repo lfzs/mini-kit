@@ -25,6 +25,7 @@ fly.interceptors.request.use(handleRequest)
 fly.interceptors.response.use(handleResponse, handleError)
 
 async function handleRequest(request) {
+  request.body = _.omitBy(request.body, _.isNil) // 过滤掉 body 中 value 为 null 和 undefined 的 key
   // 请求不需要带 token 时，务必注释以下两行
   const token = await tokenStore.getToken()
   token && (request.headers.Authorization = token)
@@ -36,7 +37,6 @@ function handleResponse(res) {
   if (headers['x-page']) {
     res.meta = {
       per_page: +headers['x-per-page'][0],
-      page: +headers['x-page'][0],
       total: +headers['x-total'][0],
     }
   }
