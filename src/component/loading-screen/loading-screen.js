@@ -13,7 +13,6 @@ Component({
 
   lifetimes: {
     ready() {
-      wx.login()
       return this.init()
     },
   },
@@ -34,6 +33,7 @@ Component({
         this.setData({ status: -1 })
       } catch (e) {
         console.log(e) // eslint-disable-line no-console
+        wx.login()
         this.setData({ status: e.status || -1 })
       } finally {
         this.setData({ loading: false })

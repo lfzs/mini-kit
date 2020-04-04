@@ -1,5 +1,5 @@
 .loading-screen {
-  position: fixed;
+  position: absolute;
   top: 0;
   height: 100vh;
   color: #bfbfbf;
@@ -8,39 +8,27 @@
   .auth,
   .error,
   .retry {
-    height: 101vh;
+    height: 100.1vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
     justify-content: center;
-
-    .button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 335px;
-      height: 50px;
-      border-radius: 5px;
-      padding: 0;
-      margin-top: 30px;
-      background-color: #000;
-      color: #fff;
-    }
   }
 
   .auth {
-    align-items: flex-start;
-    align-content: flex-start;
-    background-color: #fff;
+    .icon-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 50px;
+    }
 
-    .tips {
-      width: 100vw;
-      height: 70vh;
-      padding: 55vh 20px 0;
+    .button {
+      width: 200px;
+      height: 45px;
+      border-radius: 5px;
+      font-size: 14px;
+      background-color: @wxGreen;
       color: #fff;
-      text-align: justify;
-      background-color: #000;
     }
   }
 
@@ -48,12 +36,7 @@
     .icon-disconnect {
       width: 45px;
       height: 45px;
-      margin-bottom: 30px;
-    }
-
-    .tips {
-      width: 100%;
-      text-align: center;
+      margin-bottom: 20px;
     }
   }
 
@@ -62,17 +45,6 @@
       width: 45px;
       height: 43px;
       margin-bottom: 20px;
-    }
-
-    .tips {
-      width: 100%;
-      text-align: center;
-    }
-
-    .button {
-      width: 200px;
-      height: 40px;
-      margin-top: 70px;
     }
   }
 

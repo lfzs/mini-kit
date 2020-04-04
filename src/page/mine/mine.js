@@ -5,8 +5,15 @@ Page({
     userStore,
   },
 
-  onLoad() {
-    return userStore.fetchData()
+  onLoadAfter: false,
+
+  async onLoad() {
+    await userStore.fetchData()
+    this.onLoadAfter = true
+  },
+
+  onShow() {
+    this.onLoadAfter && userStore.fetchData()
   },
 
 })
