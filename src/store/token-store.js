@@ -26,9 +26,8 @@ export default new class {
     return !!authSetting['scope.userInfo']
   }
 
-  // 参数 userInfo 格式为 wx.getUserInfo 获取的值
-  async login(userInfo = {}) {
-    const { code } = await wxp.login()
+  // code 为调用 wx.getUserInfo 前获取的。 userInfo 格式为 wx.getUserInfo 获取的值
+  async login(code = '', userInfo = {}) {
     const body = { code, encrypted_data: userInfo.encryptedData, iv: userInfo.iv }
     const { data: { access_token } } = await fly.post('user/token', body)
     this.saveToken(access_token)
