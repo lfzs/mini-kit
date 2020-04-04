@@ -2,5 +2,7 @@
 module.exports = {
   primary: 'red',
   bg: '#f4f4f4',
+  defaultFontColor: '#333',
   darkgray: '#a9a9a9',
+  wxGreen: '#07c160',
 }

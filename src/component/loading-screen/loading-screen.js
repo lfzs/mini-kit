@@ -1,6 +1,6 @@
 // 拦截页面的 onLoad
 import { tokenStore } from '@store'
-import { goHome, autoLoading } from '@util'
+import { goHome, autoLoading, wxp } from '@util'
 
 Component({
   properties: {},
@@ -13,7 +13,6 @@ Component({
 
   lifetimes: {
     ready() {
-      wx.login()
       return this.init()
     },
   },
@@ -40,12 +39,13 @@ Component({
       }
     },
 
-    preventTouchmove() { /** 阻止滚动穿透 */ },
-
     async handleAuth(e) {
       const { errMsg } = e.detail
       if (errMsg.indexOf('deny') > -1) return
-      await autoLoading(tokenStore.login(e.detail))
+
+      const { code } = await wxp.login()
+      const userInfo = await wxp.getUserInfo()
+      await autoLoading(tokenStore.login(code, userInfo))
       return this.init()
     },
 

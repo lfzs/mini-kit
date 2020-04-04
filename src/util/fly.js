@@ -48,14 +48,15 @@ async function handleError(err) {
     // 向后台换取 token 的接口是否需要用加密数据。保留一种即可。需要
     const canGetUserInfo = await tokenStore.canGetUserInfo()
     if (canGetUserInfo) {
-      wx.login()
+      const { code } = await wxp.login()
       const userInfo = await wxp.getUserInfo()
-      await tokenStore.login(userInfo)
+      await tokenStore.login(code, userInfo)
       return fly.request(err.request)
     }
 
     // 不需要
-    // await tokenStore.login()
+    // const { code } = await wxp.login()
+    // await tokenStore.login(code)
     // return fly.request(err.request)
   }
   throw { ..._.get(err, 'response.data', {}), status: err.status }
