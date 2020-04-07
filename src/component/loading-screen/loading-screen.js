@@ -40,8 +40,7 @@ Component({
     },
 
     async handleAuth(e) {
-      const { errMsg } = e.detail
-      if (errMsg.indexOf('deny') > -1) return
+      if (!e.detail.iv) return
 
       const { code } = await wxp.login()
       const userInfo = await wxp.getUserInfo()

@@ -8,6 +8,7 @@ page {
   line-height: 1.25;
   background-color: @bg;
   box-sizing: border-box;
+  padding-bottom: env(safe-area-inset-bottom); // 兼容 iphoneX 类的 home indicator
 
   view,
   canvas,
