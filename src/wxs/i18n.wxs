@@ -1,0 +1,13 @@
+var local = {
+  zh: {
+    '姓名': '姓名',
+  },
+
+  en: {
+    '姓名': 'name',
+  },
+}
+
+module.exports = function(key, language) {
+  return local[language || 'zh'][key]
+}
