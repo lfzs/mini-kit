@@ -1,4 +1,5 @@
-var local = {
+// 提供给页面使用
+var LOCAL = {
   zh: {
     '姓名': '姓名',
   },
@@ -9,5 +10,5 @@ var local = {
 }
 
 module.exports = function(key, language) {
-  return local[language || 'zh'][key]
+  return LOCAL[language][key]
 }
