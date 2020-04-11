@@ -1,6 +1,6 @@
 import { fly, wxp } from '@util'
 
-export default async function({ content = '', confirmText = '确定', tmplIds = [], targetType = '', targetId = '' }) {
+export default async function({ content = '', tmplIds = [], targetType = '', targetId = '' }) {
   tmplIds = tmplIds.filter(Boolean)
   if (!tmplIds.length) return wxp.showToast({ title: content, icon: 'none' })
   wx.hideLoading()
@@ -15,14 +15,14 @@ export default async function({ content = '', confirmText = '确定', tmplIds = 
 
   const onceIds = tmplIds.filter(id => !itemSettings[id]) // 订阅一次的 id
   if (!onceIds.length) {
-    wx.requestSubscribeMessage({ success: res => sendSubscribeMessage(res) })
+    wx.requestSubscribeMessage({ tmplIds, success: res => sendSubscribeMessage(res) })
     return wxp.showToast({ title: content, icon: 'none' })
   }
 
   return new Promise(resolve => {
     wx.showModal({
       content,
-      confirmText,
+      confirmText: '确定',
       showCancel: false,
       fail: resolve,
       success: ({ confirm }) => {
