@@ -56,7 +56,7 @@ Page = (config = {}) => {
   }
 
   const util = {
-    preventTouchmove() { /** 阻止滚动穿透 */ },
+    noop() { /** 阻止滚动穿透 */ },
 
     previewImage(e) {
       const { url, urls } = e.target.dataset

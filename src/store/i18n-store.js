@@ -45,5 +45,5 @@ export default new class {
 // page.util 在 onShow 执行即可
 // _updateTitle() {
 //   if (i18nStore.needUpdateTabBar && isTabPage()) i18nStore.setTabbar()
-//   if (i18nStore.needUpdateNavigationBar) wx.setNavigationBarTitle({ title: i18nStore.t(this.title) })
+//   if (i18nStore.needUpdateNavigationBar) wx.setNavigationBarTitle({ title: i18nStore.t(getCurrentPageRoute()) })
 // }
