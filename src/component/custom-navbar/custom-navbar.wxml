@@ -4,7 +4,7 @@
 <view
   class="nav fixed"
   style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ menuButtonInfo.width + rightGap }}px;"
-  catchtouchmove="preventTouchmove"
+  catchtouchmove="noop"
 >
   <view style="height: {{ navHeight }}px; padding: 0 7px" class="flex-center" bindtap="goBack">
     <block wx:if="{{ !isTabPage }}">

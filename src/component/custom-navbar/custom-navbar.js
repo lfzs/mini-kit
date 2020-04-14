@@ -28,7 +28,7 @@ Component({
 
   methods: {
     goBack() { this.data.isTabPage || goBack() },
-    preventTouchmove() {},
+    noop() {},
 
     init() {
       uiStore.setMenuButtonInfo()
