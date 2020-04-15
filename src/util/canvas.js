@@ -4,7 +4,7 @@
 */
 
 let CTX
-export default function canvas(canvasId, config) {
+export default function canvas(canvasId, config = []) {
   CTX = wx.createCanvasContext(canvasId)
 
   config.forEach(configItem => {
@@ -52,32 +52,45 @@ function drawImage(config) {
 }
 
 function drawTextLine(config) {
-  const { text, top, left, maxWidth, fontSize, color, textAlign = 'left', baseline = 'top', lineHeight = 30, lineCount = 1 } = config
+  const { text, top, left, fontSize, color, textAlign = 'left', baseline = 'top', maxLine = 1 } = config
   CTX.setFontSize(fontSize)
   CTX.setTextAlign(textAlign)
   CTX.setFillStyle(color)
   CTX.setTextBaseline(baseline)
-  if (lineCount === 1) return CTX.fillText(text, left, top, maxWidth)
+  if (maxLine === 1) return CTX.fillText(text, left, top)
+
+  drawTextLines(config)
+}
+
+function drawTextLines(config) {
+  const { text, top, left, maxWidth, lineHeight, maxLine } = config
 
   const lines = [''] // 每一行的文字
+  let isOver = false // 文字是否多余
+
   for (let index = 0; index < text.length; index++) {
-    const { width } = CTX.measureText(lines[lines.length - 1])
-    if (width > maxWidth) {
-      if (lines.length > lineCount) break
-      lines.push(text[index])
+    const last = lines[lines.length - 1]
+    const { width } = CTX.measureText(last)
+
+    if (width < maxWidth) {
+      lines[lines.length - 1] = `${last}${text[index]}`
     } else {
-      lines[lines.length - 1] = lines.pop() + text[index]
+      if (lines.length >= maxLine) {
+        isOver = true
+        break
+      }
+      lines.push(text[index])
     }
   }
 
-  // 是否有多余
-  if (lines.length > lineCount) {
-    lines.pop()
-    const lastLine = lines[lines.length - 1]
-    lines[lines.length - 1] = `${lastLine.substring(0, lastLine.length - 3)}...`
+  if (isOver) {
+    const last = lines[lines.length - 1]
+    lines[lines.length - 1] = `${last.substring(0, last.length - 1)}...`
   }
 
-  for (let index = 0; index < lines.length; index++) CTX.fillText(lines[index], left, top + (lineHeight * index), maxWidth)
+  for (let index = 0; index < lines.length; index++) {
+    CTX.fillText(lines[index], left, top + (lineHeight * index), maxWidth)
+  }
 }
 
 function drawBackground(config) {
