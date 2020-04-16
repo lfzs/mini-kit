@@ -1,4 +1,4 @@
-
+const path = require('path')
 const { execSync } = require('child_process')
 const isProduction = process.argv[2] === 'production'
 
@@ -7,11 +7,13 @@ execSync(isProduction ? 'yarn build' : 'yarn staging')
 
 const ci = require('miniprogram-ci')
 const dayjs = require('dayjs')
+const { appid } = require('./../project.config.json')
+
 const project = new ci.Project({
-  appid: 'TODO',
+  appid,
   type: 'miniProgram',
-  projectPath: 'dist',
-  privateKeyPath: 'TODO',
+  projectPath: path.resolve('dist'),
+  privateKeyPath: path.resolve('private.key'),
 })
 
 ci.upload({
