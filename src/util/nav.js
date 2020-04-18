@@ -1,8 +1,8 @@
 export const homePage = '/page/home/home'
 
 export const tabPages = [
-  'page/home/home',
-  'page/mine/mine',
+  '/page/home/home',
+  '/page/mine/mine',
 ]
 
 export function getCurrentPage() {
@@ -10,7 +10,7 @@ export function getCurrentPage() {
 }
 
 export function isTabPage(url = getCurrentPageRoute()) {
-  return tabPages.some(item => url.indexOf(item) > -1)
+  return tabPages.some(tab => tab.includes(url))
 }
 
 export function getCurrentPageRoute() {
@@ -35,7 +35,7 @@ export function goBack() {
   canBack() ? wx.navigateBack() : goHome()
 }
 
-export function redirectTo(url) {
+export function redirect(url) {
   wx.redirectTo({ url })
 }
 

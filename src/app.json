@@ -7,7 +7,9 @@
   "subpackages": [
     {
       "root": "page-order",
-      "pages": ["list/list"]
+      "pages": [
+        "list/list"
+      ]
     }
   ],
   "preloadRule": {

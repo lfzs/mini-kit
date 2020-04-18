@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { LANGUAGE, LOCAL } from '@util'
+import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage } from '@util'
 
 export default new class {
   @observable language = ''
@@ -28,22 +28,30 @@ export default new class {
     this.needUpdateTabBar = true
   }
 
-  setTabbar() { // 在 tabbar 页面调用才有效果
-    const tabbar = [
-      { index: 0, text: LOCAL[this.language]['首页'] },
-      { index: 1, text: LOCAL[this.language]['我的'] },
-    ]
-    tabbar.forEach(item => wx.setTabBarItem(item))
-    this.needUpdateTabBar = false
+  setTabbar() {
+    if (this.needUpdateTabBar && isTabPage()) {
+      tabPages.forEach((tab, index) => wx.setTabBarItem({ index, text: this.t(`tab.${getCurrentPageRoute()}`) }))
+      this.needUpdateTabBar = false
+    }
+  }
+
+  setCurrentTitle() {
+    if (this.needUpdateNavigationBar) {
+      wx.setNavigationBarTitle({ title: this.t(getCurrentPageRoute()) })
+    }
   }
 
   t(value) {
-    return LOCAL[this.language][value]
+    return LOCAL[this.language][value] || ''
   }
 }
 
-// page.util 在 onShow 执行即可
-// _updateTitle() {
-//   if (i18nStore.needUpdateTabBar && isTabPage()) i18nStore.setTabbar()
-//   if (i18nStore.needUpdateNavigationBar) wx.setNavigationBarTitle({ title: i18nStore.t(getCurrentPageRoute()) })
+// page.util 中定义
+// _updateTitle() { // onShow 执行
+//  i18nStore.setTabbar()
+//  18nStore.setCurrentTitle()
+// }
+
+// t(value) {
+//   return i18nStore.t(value)
 // }
