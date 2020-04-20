@@ -37,9 +37,9 @@ export default function(...args) {
 
   if (typeof args[0] === 'function') { // 被当作普通函数调用 且 args[0] 是普通函数
     return
-  } else if (typeof args[0].then === 'function') { // 被当作普通函数调用 且 args[0] 是promise
+  } else if (typeof args[0].then === 'function') { // 被当作普通函数调用 且 args[0] 是 promise
     return loading(...args)
-  } else if (args.length === 3) { // 被当作装饰器使用 legacy模式 args 为[target, name, descriptor]
+  } else if (args.length === 3) { // 被当作装饰器使用 legacy 模式 args 为[target, name, descriptor]
     return loadingDecorator()(...args)
   } else {
     return loadingDecorator(...args) // 被当做装饰器并传参使用 args 是参数

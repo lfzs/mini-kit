@@ -40,7 +40,7 @@ Component({
     },
 
     async handleAuth(e) {
-      if (!e.detail.iv) return
+      if (!e.detail.userInfo) return
 
       const { code } = await wxp.login()
       const userInfo = await wxp.getUserInfo()
