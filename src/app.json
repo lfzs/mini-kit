@@ -45,6 +45,7 @@
     "item-card": "/component/item-card/item-card",
     "img-icon": "/component/img-icon/img-icon",
     "popup": "/component/popup/popup",
+    "popup-share": "/component/popup-share/popup-share",
     "loading-more": "/component/loading-more/loading-more",
     "mp-icon": "/weui-miniprogram/icon/icon",
     "mp-loading": "/weui-miniprogram/loading/loading"
