@@ -15,8 +15,8 @@ Component({
 
   methods: {
     handleAuth(e) {
-      const { iv, userInfo } = e.detail
-      if (!iv) return
+      const { userInfo } = e.detail
+      if (!userInfo) return
       this.triggerEvent('submit')
       userStore.updateUserInfo(userInfo)
     },

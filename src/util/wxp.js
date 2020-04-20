@@ -159,7 +159,7 @@ function promisifyAll(wx = {}, wxp = {}) {
     if (typeof wx[api] === 'function') {
       wxp[api] = args => promisify(wx[api])(args)
     } else {
-      console.log(`wx.${api} 不是函数，已跳过`) // eslint-disable-line no-console
+      console.log(`注意：wx.${api} 不是函数，已跳过`) // eslint-disable-line no-console
     }
   }
 }
