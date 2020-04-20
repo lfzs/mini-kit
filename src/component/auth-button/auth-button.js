@@ -2,9 +2,7 @@
 import { userStore } from '@store'
 
 Component({
-  options: {
-    addGlobalClass: true,
-  },
+  externalClasses: ['custom-class'],
 
   properties: {
     text: {
