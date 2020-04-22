@@ -34,7 +34,7 @@ export default function canvas(canvasId, config = []) {
 }
 
 function drawImage(config) {
-  // info 为 wx.getImageInfo 的信息
+  // info 为 wx.getImageInfo 的信息，即图片的真实宽高
   const { top, left, width, height, url, info } = config
   if (info) {
     // aspectFill 模式，水平100%，垂直居中截取
@@ -52,18 +52,19 @@ function drawImage(config) {
 }
 
 function drawTextLine(config) {
-  const { text, top, left, fontSize, color, textAlign = 'left', baseline = 'top', maxLine = 1 } = config
+  const { text, top, left, maxWidth, fontSize, color, textAlign = 'left', baseline = 'top' } = config
   CTX.setFontSize(fontSize)
   CTX.setTextAlign(textAlign)
   CTX.setFillStyle(color)
   CTX.setTextBaseline(baseline)
-  if (maxLine === 1) return CTX.fillText(text, left, top)
 
+  const { width } = CTX.measureText(text)
+  if (!maxWidth || width < maxWidth) return CTX.fillText(text, left, top)
   drawTextLines(config)
 }
 
 function drawTextLines(config) {
-  const { text, top, left, maxWidth, lineHeight, maxLine } = config
+  const { text, top, left, maxWidth, lineHeight, maxLine = 1 } = config
 
   const lines = [''] // 每一行的文字
   let isOver = false // 文字是否多余
