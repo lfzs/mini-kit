@@ -21,7 +21,7 @@
     "navigationBarTitleText": "mini-app",
     "backgroundColor": "#f4f4f4",
     "backgroundTextStyle": "dark",
-    "onReachBottomDistance": 150
+    "onReachBottomDistance": 500
   },
   "tabBar": {
     "color": "#999",
@@ -38,7 +38,6 @@
     ]
   },
   "style": "v2",
-  "useExtendedLib": { "weui": true },
   "usingComponents": {
     "loading-screen": "/component/loading-screen/loading-screen",
     "custom-page": "/component/custom-page/custom-page",
@@ -46,8 +45,6 @@
     "img-icon": "/component/img-icon/img-icon",
     "popup": "/component/popup/popup",
     "popup-share": "/component/popup-share/popup-share",
-    "loading-more": "/component/loading-more/loading-more",
-    "mp-icon": "/miniprogram_npm/weui-miniprogram/icon/icon",
-    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading"
+    "loading-more": "/component/loading-more/loading-more"
   }
 }

@@ -7,10 +7,7 @@
   catchtouchmove="noop"
 >
   <view style="height: {{ navHeight }}px; padding: 0 7px" class="flex-center" bindtap="goBack">
-    <block wx:if="{{ !isTabPage }}">
-      <mp-icon wx:if="{{ canBack }}" icon="back" color="#fff" size="10" />
-      <mp-icon wx:else icon="home" color="#fff" type="field" size="20" />
-    </block>
+    <image src="/image/icon-back.svg" class="icon-back" wx:if="{{ !isTabPage }}" />
   </view>
 
   <view style="{{ title || 'flex: 1' }}; height: calc(100% - {{ topGap * 2 }}px);">

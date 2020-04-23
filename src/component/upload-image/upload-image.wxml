@@ -8,7 +8,7 @@
   </view>
 
   <view class="item upload flex-center" bindtap="chooseImage" wx:if="{{ limit - images.length > 0 }}">
-    <mp-icon icon="album" />
+    <img-icon name="icon-upload" ext="svg" size="30" />
   </view>
 
 </view>

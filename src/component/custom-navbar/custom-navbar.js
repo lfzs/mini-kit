@@ -1,6 +1,6 @@
 // 自定义导航
 import { uiStore } from '@store'
-import { goBack, isTabPage, canBack } from '@util'
+import { goBack, isTabPage } from '@util'
 
 Component({
 
@@ -22,7 +22,6 @@ Component({
 
   data: {
     windowWidth: 375,
-    canBack: true,
     isTabPage: true,
   },
 
@@ -49,7 +48,6 @@ Component({
         rightGap,
         navHeight,
         windowWidth,
-        canBack: canBack(),
         isTabPage: isTabPage(),
       })
     },
