@@ -1,5 +1,11 @@
 # mini-kit 小程序脚手架
 
+## CLI
+
+`cp project.config.json.example project.config.json` 补充其中的 appID 和 项目名称。
+
+使用 CI 部署时，需要补充 private.key
+
 ## util/page.js
 
 对小程序的 Page 进行一层拦截，注入 mobx 的 autorun。将 onLoad 挂载到页面上，使用组件 loading-screen 调用
