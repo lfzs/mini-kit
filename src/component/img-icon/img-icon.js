@@ -1,4 +1,4 @@
-// icon
+// 方形的 icon
 Component({
   externalClasses: ['custom-class'],
 

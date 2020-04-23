@@ -18,7 +18,7 @@ const project = new ci.Project({
 
 ci.upload({
   project,
-  version: dayjs().format('YYYYMMDDHHmmss'),
+  version: dayjs().format('YYYYMMDD.HHmmss'),
   desc: isProduction ? 'production' : 'staging',
   robot: isProduction ? 1 : 2,
   onProgressUpdate: console.log, // eslint-disable-line no-console

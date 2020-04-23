@@ -26,12 +26,3 @@
 当开始执行 onLoad 时，其中注册 autorun 会更新 data，把 store 的放置到 data 中，这一次页面才会真正拿到 store 里的数据。后面更新数据会再次更新 data
 
 - gulp 在新建或者删除文件时，`gulp.watch`并不会执行，需要重新执行 gulp 编译操作
-
-- 集成了 weui (https://developers.weixin.qq.com/miniprogram/dev/extended/weui/) 组件库，使用时在 usingComponents 中声明即可。
-例： `"mp-icon": "/weui-miniprogram/icon/icon"`
-
-- weui 使用的是 px 做单位
-
-- 需要修改 weui 组件内部样式，每个组件可以设置 ext-class 这个属性，该属性提供设置在组件 WXML 顶部元素的 class
-
-- weui 组件的 addGlobalClass 的 options 都设置为 true，所以可以在页面设置 wxss 样式来覆盖组件的内部样式
