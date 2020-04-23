@@ -1,4 +1,3 @@
-const path = require('path')
 const { execSync } = require('child_process')
 const isProduction = process.argv[2] === 'production'
 
@@ -12,13 +11,13 @@ const { appid } = require('./../project.config.json')
 const project = new ci.Project({
   appid,
   type: 'miniProgram',
-  projectPath: path.resolve('dist'),
-  privateKeyPath: path.resolve('private.key'),
+  projectPath: 'dist',
+  privateKeyPath: 'private.key',
 })
 
 ci.upload({
   project,
-  version: dayjs().format('YYYYMMDD.HHmmss'),
+  version: dayjs().format('YYYY-MM-DD HH:mm:ss'),
   desc: isProduction ? 'production' : 'staging',
   robot: isProduction ? 1 : 2,
   onProgressUpdate: console.log, // eslint-disable-line no-console
