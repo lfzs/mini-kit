@@ -1,4 +1,6 @@
 const { execSync } = require('child_process')
+const fs = require('fs')
+
 const isProduction = process.argv[2] === 'production'
 
 execSync('yarn install')
@@ -6,7 +8,9 @@ execSync(isProduction ? 'yarn build' : 'yarn staging')
 
 const ci = require('miniprogram-ci')
 const dayjs = require('dayjs')
-const { appid } = require('./../project.config.json')
+
+const config = fs.readFileSync('project.config.json.example')
+const { appid } = JSON.parse(config.toString())
 
 const project = new ci.Project({
   appid,

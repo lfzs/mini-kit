@@ -27,6 +27,7 @@ export default class {
   }
 
   fetchMoreData = flow(function* () {
+    if (this.state === 'pending') return
     if (!this.canLoadmore) return
 
     this.state = 'pending'
