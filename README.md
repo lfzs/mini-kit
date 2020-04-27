@@ -2,7 +2,7 @@
 
 ## CLI
 
-`cp project.config.json.example project.config.json` 补充其中的 appID 和 项目名称。
+补充 project.config.json.example 的 projectname 和 appid ,`cp project.config.json.example project.config.json`
 
 使用 CI 部署时，需要补充 private.key
 
