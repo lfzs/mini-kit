@@ -1,4 +1,4 @@
-// import { allOrderListStore, waitPayOrderListStore, waitSendOrderListStore, waitConfirmOrderListStore } from '@store'
+import { allOrderListStore, waitPayOrderListStore, waitSendOrderListStore, waitConfirmOrderListStore } from '@store'
 const page = [
   { text: '全部', name: 'allOrderListStore' },
   { text: '待付款', name: 'waitPayOrderListStore' },
@@ -7,12 +7,7 @@ const page = [
 ]
 
 Page({
-  store: {
-    allOrderListStore: { data: [{ title: 1 }] },
-    waitPayOrderListStore: { data: [{ title: 2 }] },
-    waitSendOrderListStore: { data: [{ title: 3 }] },
-    waitConfirmOrderListStore: { data: [{ title: 4 }] },
-  },
+  store: { allOrderListStore, waitPayOrderListStore, waitSendOrderListStore, waitConfirmOrderListStore },
 
   data: {
     current: 0,
@@ -32,14 +27,14 @@ Page({
   onNav(e) {
     const { current } = e.currentTarget.dataset
     this.setData({ current })
-    this.getStore.tryFetchData()
+    this.getStore().tryFetchData()
   },
 
   onSwiperChange(e) {
     const { source, current } = e.detail
     if (source === 'touch') {
       this.setData({ current })
-      this.getStore.tryFetchData()
+      this.getStore().tryFetchData()
     }
   },
 
