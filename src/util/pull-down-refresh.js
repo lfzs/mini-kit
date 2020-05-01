@@ -10,7 +10,4 @@ export default function(target, name, descriptor) {
         wx.showToast({ title: '请求失败', icon: 'none' })
       })
   }
-
-  descriptor.enumerable = true
-  return descriptor
 }
