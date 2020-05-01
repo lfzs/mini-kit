@@ -77,31 +77,17 @@ function getNpm() {
     file.contents = Buffer.from(newContents)
 
     const reg = /require\((.*?)\)/g
-    const packageNames = contents.match(reg) || []
+    const names = (contents.match(reg) || []).filter(i => !i.includes('./'))
+
     const entry = {}
-
-    packageNames.map(name => {
-      if (!name.includes('./')) {
-        const _name = name.split('"')[1]
-        // console.log(_name)
-        if (!tempNames[_name]) {
-          tempNames[_name] = _name
-          entry[_name] = _name
-        }
-      }
+    names.map(i => {
+      const name = i.split('"')[1]
+      if (!tempNames[name]) tempNames[name] = entry[name] = name
     })
+
     // console.log(entry)
-    Object.keys(entry).length && webpack({ ...webpackConfig, entry }).run((err, stats) => {
-      if (err || stats.hasErrors()) {
-        /* eslint-disable */
-        console.log(color.red('===================== webpack Error ====================='))
-        console.log(color.red('file '), color.green(file.path))
-        console.log(color.red('entry '), color.green(entry))
-        /* eslint-enable */
-      }
-    })
-
-    callback(null, file)
+    if (!Object.keys(entry).length) return callback(null, file)
+    webpack({ ...webpackConfig, entry }).run((err, stats) => callback(err || stats.hasErrors() ? JSON.stringify(entry, null, 2) : null, file))
   })
 }
 
