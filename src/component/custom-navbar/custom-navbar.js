@@ -39,7 +39,7 @@ Component({
       const rightGap = windowWidth - menuButtonInfo.right // 胶囊右边的间隙
       const navHeight = topGap * 2 + menuButtonInfo.height // 导航条的高度
 
-      uiStore.setCustonNavbarHeight(statusBarHeight + navHeight)
+      uiStore.setCustomNavbarHeight(statusBarHeight + navHeight)
 
       this.setData({
         menuButtonInfo,

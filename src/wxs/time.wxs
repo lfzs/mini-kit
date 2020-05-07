@@ -1,8 +1,3 @@
-/*
-wxs 有自己的语法
-https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/
-*/
-
 function leadingZero(str) {
   str = str.toString()
   return str[1] ? str : '0' + str
