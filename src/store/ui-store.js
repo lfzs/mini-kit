@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 
 export default new class {
-  @observable custonNavbarHeight = 0 // 自定义导航条的高度(状态栏 + 标题栏)，单位 px
+  @observable customNavbarHeight = 0 // 自定义导航条的高度(状态栏 + 标题栏)，单位 px
   menuButtonInfo = {} // 右上角胶囊信息
   systemInfo = {}
 
@@ -11,8 +11,8 @@ export default new class {
   }
 
   @action
-  setCustonNavbarHeight(height) {
-    this.custonNavbarHeight = height
+  setCustomNavbarHeight(height) {
+    this.custonmNavbarHeight = height
   }
 
   setSystemInfo() {

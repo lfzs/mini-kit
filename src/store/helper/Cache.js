@@ -6,7 +6,7 @@ export default class {
     let value = this.caches[key]
 
     if (!value) {
-      value = new this()
+      value = new this(id)
       value.id = id
       this.caches[key] = value
     }
