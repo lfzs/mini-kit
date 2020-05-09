@@ -58,7 +58,7 @@ function bundleJS() {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(gulpif(!isDev, eslint.failAfterError()))
-    .pipe(gulpif(!isDev, eslint.results(({ warningCount }) => warningCount > 0 && process.exit())))
+    .pipe(gulpif(!isDev, eslint.results(({ warningCount }) => warningCount > 0 && process.exit(1))))
     .pipe(sourcemaps.init())
     .pipe(babel())
     .pipe(sourcemaps.write('.'))

@@ -2,7 +2,7 @@
 <block wx:else>
   <slot wx:if="{{ status === -1 }}" />
   <template wx:elif="{{ status === 401 }}" is="login" />
-  <template wx:elif="{{ status === 404 }}" is="error" data="{{ errorInfo }}" />
+  <template wx:elif="{{ status === 404 }}" is="error" data="{{ errorText }}" />
   <template wx:else is="retry" />
 </block>
 
@@ -27,7 +27,7 @@
   <scroll-view class="loading-screen">
     <view class="error">
       <image class="icon-404" src="/image/icon-404.png" mode="widthFix" />
-      <text>{{ errorInfo || '找不到该页面' }}</text>
+      <text>{{ errorText }}</text>
     </view>
   </scroll-view>
 </template>

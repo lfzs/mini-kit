@@ -1,6 +1,6 @@
 // 拦截页面的 onLoad
 import { tokenStore } from '@store'
-import { goHome, autoLoading, wxp } from '@util'
+import { goHome, autoLoading, wxp, getCurrentPage } from '@util'
 
 Component({
   properties: {},
@@ -8,7 +8,7 @@ Component({
   data: {
     loading: true,
     status: -1,
-    errorInfo: '',
+    errorText: '',
   },
 
   lifetimes: {
@@ -26,17 +26,21 @@ Component({
   methods: {
 
     async init() {
-      const currentPage = getCurrentPages().pop()
+      this.setData({ loading: true })
+
       try {
-        this.setData({ loading: true })
-        await currentPage._init()
+        await getCurrentPage()._init()
         this.setData({ status: -1 })
       } catch (e) {
         console.log(e) // eslint-disable-line no-console
-        this.setData({ status: e.status || -1 })
-      } finally {
-        this.setData({ loading: false })
+        const { status, error_message, message, errMsg } = e
+
+        let errorText = ''
+        status === 404 && (errorText = error_message || message || errMsg || '请求失败, 请稍后重试')
+        this.setData({ status, errorText })
       }
+
+      this.setData({ loading: false })
     },
 
     async handleAuth(e) {
