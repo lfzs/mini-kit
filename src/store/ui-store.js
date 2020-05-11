@@ -12,7 +12,7 @@ export default new class {
 
   @action
   setCustomNavbarHeight(height) {
-    this.custonmNavbarHeight = height
+    this.customNavbarHeight = height
   }
 
   setSystemInfo() {
