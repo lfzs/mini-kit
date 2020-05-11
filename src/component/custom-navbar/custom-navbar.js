@@ -21,7 +21,12 @@ Component({
   },
 
   data: {
-    windowWidth: 375,
+    menuButtonInfo: {},
+    statusBarHeight: 0,
+    topGap: 0,
+    rightGap: 0,
+    navHeight: 0,
+    windowWidth: 0,
     isTabPage: true,
   },
 
@@ -30,6 +35,7 @@ Component({
     noop() {},
 
     init() {
+      uiStore.setSystemInfo()
       uiStore.setMenuButtonInfo()
       const isIOS = uiStore.isIOS()
       let { systemInfo: { statusBarHeight, windowWidth }, menuButtonInfo } = uiStore

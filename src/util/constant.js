@@ -1,6 +1,7 @@
 export const APP_NAME = 'mini-kit'
 export const TOKEN_KEY = `token_${process.env.NODE_ENV}`
 export const LANGUAGE = `language_${process.env.NODE_ENV}`
+export const ADD_TO_MY_MINIPROGRAM = `add_to_my_miniprogram_${process.env.NODE_ENV}`
 
 export const MEMORY_WARNING_LEVEL = {
   5: 'TRIM_MEMORY_RUNNING_MODERATE',
