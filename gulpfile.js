@@ -66,9 +66,9 @@ function bundleJS() {
     .pipe(gulp.dest('dist'))
 }
 
-const tempNames = {}
-function getNpm() {
-  return through.obj((file, encoding, callback) => {
+const getNpm = function() {
+  const cacheNames = {}
+  return () => through.obj((file, encoding, callback) => {
     if (!file.isBuffer()) return callback(null, file)
     const contents = file.contents.toString()
 
@@ -82,14 +82,14 @@ function getNpm() {
     const entry = {}
     names.map(i => {
       const name = i.split('"')[1]
-      if (!tempNames[name]) tempNames[name] = entry[name] = name
+      if (!cacheNames[name]) cacheNames[name] = entry[name] = name
     })
 
     // console.log(entry)
     if (!Object.keys(entry).length) return callback(null, file)
     webpack({ ...webpackConfig, entry }).run((err, stats) => callback(err || stats.hasErrors() ? JSON.stringify(entry, null, 2) : null, file))
   })
-}
+}()
 
 function bundleLess() {
   return gulp.src(paths.less)

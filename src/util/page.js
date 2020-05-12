@@ -43,11 +43,8 @@ Page = (config = {}) => {
       const title = ''
       const imageUrl = ''
 
-      if (onShareAppMessage) {
-        return onShareAppMessage.call(this)
-      } else {
-        return { title, path: homePage, imageUrl }
-      }
+      if (onShareAppMessage) return onShareAppMessage.call(this)
+      return { title, path: homePage, imageUrl }
     },
 
     onReachBottom() {

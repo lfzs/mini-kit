@@ -41,12 +41,9 @@ export function redirect(url) {
 
 export function nav(url) {
   if (!url) return goHome()
+  if (isTabPage(url)) return wx.switchTab({ url })
 
-  if (isTabPage(url)) {
-    wx.switchTab({ url })
-  } else {
-    const pages = getCurrentPages()
-    const type = pages.length < 10 ? 'navigateTo' : 'redirectTo'
-    wx[type]({ url })
-  }
+  const pages = getCurrentPages()
+  const type = pages.length < 10 ? 'navigateTo' : 'redirectTo'
+  wx[type]({ url })
 }
