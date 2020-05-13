@@ -1,6 +1,6 @@
 export Cache from './helper/Cache'
 export List from './helper/List'
-export userStore from './user-store'
+export mineStore from './mine-store'
 export tokenStore from './token-store'
 export uiStore from './ui-store'
 export homeStore from './home-store'
