@@ -1,5 +1,5 @@
 // 微信授权按钮
-import { userStore } from '@store'
+import { mineStore } from '@store'
 
 Component({
   externalClasses: ['custom-class'],
@@ -16,7 +16,7 @@ Component({
       const { userInfo } = e.detail
       if (!userInfo) return
       this.triggerEvent('submit')
-      userStore.updateUserInfo(userInfo)
+      mineStore.updateUserInfo(userInfo)
     },
   },
 

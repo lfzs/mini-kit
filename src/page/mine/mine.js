@@ -1,19 +1,19 @@
-import { userStore } from '@store'
+import { mineStore } from '@store'
 
 Page({
   store: {
-    userStore,
+    mineStore,
   },
 
   onLoadAfter: false,
 
   async onLoad() {
-    await userStore.fetchData()
+    await mineStore.fetchData()
     this.onLoadAfter = true
   },
 
   onShow() {
-    this.onLoadAfter && userStore.fetchData()
+    this.onLoadAfter && mineStore.fetchData()
   },
 
 })

@@ -1,4 +1,4 @@
-import { userStore } from '@store'
+import { mineStore } from '@store'
 import { TOKEN_KEY, fly, wxp } from '@util'
 
 export default new class {
@@ -32,7 +32,7 @@ export default new class {
     const { data: { access_token } } = await fly.post('user/token', body)
     this.saveToken(access_token)
 
-    userStore.updateUserInfo(userInfo.userInfo)
+    mineStore.updateUserInfo(userInfo.userInfo)
   }
 
 }
