@@ -3,20 +3,18 @@
 
 .add-to-my-miniprogram {
   position: fixed;
-  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   padding-top: 3px;
-  height: 0;
-  overflow: hidden;
   opacity: 0;
-  transform: translateY(50%);
+  visibility: hidden;
+  transform: translateY(30%);
   transition: all 0.8s;
 
   &.show {
-    height: auto;
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
   }
 
