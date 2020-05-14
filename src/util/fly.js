@@ -25,7 +25,6 @@ fly.interceptors.request.use(handleRequest)
 fly.interceptors.response.use(handleResponse, handleError)
 
 async function handleRequest(request) {
-  request.body = _.omitBy(request.body, _.isNil) // 过滤掉 body 中 value 为 null 和 undefined 的 key
   // 请求不需要带 token 时，务必注释以下两行
   const token = await tokenStore.getToken()
   token && (request.headers.Authorization = token)
