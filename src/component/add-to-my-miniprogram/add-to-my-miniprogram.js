@@ -4,16 +4,19 @@ import { ADD_TO_MY_MINIPROGRAM } from '@util'
 
 Component({
 
+  properties: {
+    custom: Boolean, // 当前页面是否是自定义导航
+  },
+
   lifetimes: {
     ready() {
       uiStore.setNavbarInfo()
       const { windowWidth } = uiStore.systemInfo
       const { right, width } = uiStore.menuButtonInfo
-      const { totalHeight } = uiStore.navbarInfo
       this.setData({
         rightGap: windowWidth - right,
         upRight: Math.floor(3 / 4 * width),
-        totalHeight,
+        totalHeight: this.data.custom ? uiStore.navbarInfo.totalHeight : 0,
       })
       this.toggle()
     },
@@ -29,8 +32,8 @@ Component({
 
   methods: {
     show() {
-      setTimeout(() => this.setData({ show: true }), 3000)
-      setTimeout(() => this.setData({ show: false }), 8000)
+      setTimeout(() => this.setData({ show: true }), 5000)
+      setTimeout(() => this.setData({ show: false }), 10000)
       wx.setStorage({ key: ADD_TO_MY_MINIPROGRAM, data: Date.now() })
     },
 
