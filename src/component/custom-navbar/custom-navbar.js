@@ -1,6 +1,6 @@
 // 自定义导航
 import { uiStore } from '@store'
-import { goBack, isTabPage } from '@util'
+import { goBack, isTabPage, APP_NAME } from '@util'
 
 Component({
 
@@ -9,7 +9,7 @@ Component({
     statusBarBackground: { type: String, value: '#000' },
     nav: { type: Boolean, value: true },
     navBackground: { type: String, value: '#000' },
-    title: String,
+    title: { type: String, value: APP_NAME },
   },
 
   observers: {
@@ -21,12 +21,6 @@ Component({
   },
 
   data: {
-    menuButtonInfo: {},
-    statusBarHeight: 0,
-    topGap: 0,
-    rightGap: 0,
-    navHeight: 0,
-    windowWidth: 0,
     isTabPage: true,
   },
 
@@ -35,25 +29,9 @@ Component({
     noop() {},
 
     init() {
-      uiStore.setSystemInfo()
-      uiStore.setMenuButtonInfo()
-      const isIOS = uiStore.isIOS()
-      let { systemInfo: { statusBarHeight, windowWidth }, menuButtonInfo } = uiStore
-      statusBarHeight = statusBarHeight - (isIOS ? 4 : 1) // 误差校正
-
-      const topGap = menuButtonInfo.top - statusBarHeight // 胶囊顶部和状态栏的间隙
-      const rightGap = windowWidth - menuButtonInfo.right // 胶囊右边的间隙
-      const navHeight = topGap * 2 + menuButtonInfo.height // 导航条的高度
-
-      uiStore.setCustomNavbarHeight(statusBarHeight + navHeight)
-
+      uiStore.setNavbarInfo()
       this.setData({
-        menuButtonInfo,
-        statusBarHeight,
-        topGap,
-        rightGap,
-        navHeight,
-        windowWidth,
+        navbarInfo: uiStore.navbarInfo,
         isTabPage: isTabPage(),
       })
     },

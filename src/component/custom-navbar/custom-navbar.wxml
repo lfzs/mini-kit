@@ -1,22 +1,22 @@
-<view style="height: {{ statusBarHeight }}px; background: {{ statusBarBackground }}; top: 0;" class="fixed" />
-<view style="height: {{ statusBarHeight }}px;" wx:if="{{ statusBar }}" />
+<view style="height: {{ navbarInfo.statusBarHeight }}px; background: {{ statusBarBackground }}; top: 0;" class="fixed" />
+<view style="height: {{ navbarInfo.statusBarHeight }}px;" wx:if="{{ statusBar }}" />
 
 <view
   class="nav fixed"
-  style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ menuButtonInfo.width + rightGap }}px;"
+  style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ navbarInfo.rightWidth }}px;"
   catchtouchmove="noop"
 >
-  <view style="height: {{ navHeight }}px; padding: 0 7px" class="flex-center" bindtap="goBack">
+  <view style="height: {{ navbarInfo.navHeight }}px; padding: 0 7px" class="flex-center" bindtap="goBack">
     <image src="/image/icon-back.svg" class="icon-back" wx:if="{{ !isTabPage }}" />
   </view>
 
-  <view style="{{ title || 'flex: 1' }}; height: calc(100% - {{ topGap * 2 }}px);">
+  <view style="{{ title || 'flex: 1' }}; height: calc(100% - {{ navbarInfo.topGap * 2 }}px);">
     <slot />
   </view>
 
   <image wx:if="{{ title === 'logo' }}" class="logo" src="/image/logo.png" mode="heightFix" style="height: calc(100% - {{ topGap * 2 }}px)" />
-  <view wx:elif="{{ title }}" class="title text-overflow-1" style="max-width: {{ windowWidth - (menuButtonInfo.width + rightGap) * 2 }}px;">{{ title }}</view>
+  <view wx:elif="{{ title }}" class="title text-overflow-1" style="max-width: {{ navbarInfo.windowWidth - (navbarInfo.rightWidth) * 2 }}px;">{{ title }}</view>
 
 </view>
 
-<view style="height: {{ navHeight }}px; top: {{ statusBarHeight }}px;"  wx:if="{{ nav }}" />
+<view style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px;"  wx:if="{{ nav }}" />

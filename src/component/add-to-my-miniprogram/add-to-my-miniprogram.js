@@ -1,5 +1,4 @@
 // 添加到我的小程序
-import { autorun } from 'mobx'
 import { uiStore } from '@store'
 import { ADD_TO_MY_MINIPROGRAM } from '@util'
 
@@ -7,25 +6,25 @@ Component({
 
   lifetimes: {
     ready() {
-      uiStore.setSystemInfo()
-      uiStore.setMenuButtonInfo()
-      const { systemInfo: { windowWidth }, menuButtonInfo: { right, width } } = uiStore
+      uiStore.setNavbarInfo()
+      const { windowWidth } = uiStore.systemInfo
+      const { right, width } = uiStore.menuButtonInfo
+      const { totalHeight } = uiStore.navbarInfo
       this.setData({
         rightGap: windowWidth - right,
-        upRight: Math.ceil(3 / 4 * width),
+        upRight: Math.floor(3 / 4 * width),
+        totalHeight,
       })
-      this.disposer = autorun(() => this.setData({ customNavbarHeight: uiStore.customNavbarHeight }))
       this.toggle()
     },
 
-    detached() { this.disposer() },
   },
 
   data: {
     show: false,
     rightGap: 0,
     upRight: 0,
-    customNavbarHeight: 0,
+    totalHeight: 0,
   },
 
   methods: {
