@@ -36,12 +36,7 @@ Component({
 
     toggle() {
       const timestamp = wx.getStorageSync(ADD_TO_MY_MINIPROGRAM)
-      if (timestamp) {
-        // const days = (Date.now() - timestamp) / 1000 / 60 / 60 / 24
-        // if (days >= 7) this.show() // 超过 7 天就提示
-      } else {
-        this.show()
-      }
+      if (!timestamp) this.show()
     },
   },
 
