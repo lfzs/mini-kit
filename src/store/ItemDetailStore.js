@@ -2,7 +2,7 @@ import { observable } from 'mobx'
 import { fetchAction, fly } from '@util'
 import { Cache } from '@store'
 
-export default class ItemDetailStore extends Cache {
+export default class extends Cache {
   @observable data = {}
 
   @fetchAction
