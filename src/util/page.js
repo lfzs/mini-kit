@@ -6,9 +6,9 @@ configure({ enforceActions: 'always' })
 const oldPage = Page
 
 Page = (config = {}) => {
-  const { onLoad, onReady, onHide, onShow, onUnload, onShareAppMessage, onReachBottom, store } = config
+  const { onLoad, onUnload, onShareAppMessage, store } = config
 
-  const transformLifeTime = {
+  const interceptors = {
 
     onLoad() {
       this._disposers = []
@@ -22,21 +22,9 @@ Page = (config = {}) => {
       this._init = () => onLoad && onLoad.call(this, this.options)
     },
 
-    onReady() {
-      onReady && onReady.call(this)
-    },
-
-    onShow() {
-      onShow && onShow.call(this)
-    },
-
     onUnload() {
       this._disposers.forEach(disposer => disposer())
       onUnload && onUnload.call(this)
-    },
-
-    onHide() {
-      onHide && onHide.call(this)
     },
 
     onShareAppMessage() {
@@ -46,13 +34,9 @@ Page = (config = {}) => {
       if (onShareAppMessage) return onShareAppMessage.call(this)
       return { title, path: homePage, imageUrl }
     },
-
-    onReachBottom() {
-      onReachBottom && onReachBottom.call(this)
-    },
   }
 
-  const util = {
+  const utils = {
     noop() { /** 阻止滚动穿透 */ },
 
     previewImage(e) {
@@ -67,7 +51,7 @@ Page = (config = {}) => {
   }
 
   delete config.store
-  return oldPage(Object.assign({}, util, config, transformLifeTime))
+  return oldPage(Object.assign({}, utils, config, interceptors))
 }
 
 function getProperties(store) {
