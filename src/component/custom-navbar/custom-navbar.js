@@ -6,9 +6,8 @@ Component({
 
   properties: {
     statusBar: { type: Boolean, value: true },
-    statusBarBackground: { type: String, value: '#000' },
     nav: { type: Boolean, value: true },
-    navBackground: { type: String, value: '#000' },
+    customStyle: { type: String, value: 'background: #000' },
     title: { type: String, value: APP_NAME },
   },
 

@@ -5,15 +5,8 @@ Page({
     mineStore,
   },
 
-  onLoadAfter: false,
-
-  async onLoad() {
-    await mineStore.fetchData()
-    this.onLoadAfter = true
-  },
-
   onShow() {
-    this.onLoadAfter && mineStore.fetchData()
+    mineStore.fetchData()
   },
 
 })

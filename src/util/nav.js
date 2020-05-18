@@ -1,9 +1,9 @@
-export const homePage = '/page/home/home'
-
 export const tabPages = [
   '/page/home/home',
   '/page/mine/mine',
 ]
+
+export const homePage = tabPages[0]
 
 export function getCurrentPage() {
   return getCurrentPages().pop()

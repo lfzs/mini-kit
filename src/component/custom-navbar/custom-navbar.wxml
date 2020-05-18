@@ -1,9 +1,9 @@
-<view style="height: {{ navbarInfo.statusBarHeight }}px; background: {{ statusBarBackground }}; top: 0;" class="fixed" />
+<view style="height: {{ navbarInfo.statusBarHeight }}px; top: 0; {{ customStyle }}" class="fixed" />
 <view style="height: {{ navbarInfo.statusBarHeight }}px;" wx:if="{{ statusBar }}" />
 
 <view
   class="nav fixed"
-  style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px; background: {{ navBackground }}; padding-right: {{ navbarInfo.rightWidth }}px;"
+  style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px; padding-right: {{ navbarInfo.rightWidth }}px; {{ customStyle }}"
   catchtouchmove="noop"
 >
   <view style="height: {{ navbarInfo.navHeight }}px; padding: 0 7px" class="flex-center" bindtap="goBack">
