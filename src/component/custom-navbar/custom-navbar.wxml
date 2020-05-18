@@ -3,20 +3,27 @@
 
 <view
   class="nav fixed"
-  style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px; padding-right: {{ navbarInfo.rightWidth }}px; {{ customStyle }}"
+  style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px; {{ customStyle }}"
   catchtouchmove="noop"
 >
-  <view style="height: {{ navbarInfo.navHeight }}px; padding: 0 7px" class="flex-center" bindtap="goBack">
-    <image src="/image/icon-back.svg" class="icon-back" wx:if="{{ !isTabPage }}" />
-  </view>
+  <view style="width: 26px; flex: none;" wx:if="{{ !isTabPage }}" />
 
-  <view style="{{ title || 'flex: 1' }}; height: calc(100% - {{ navbarInfo.topGap * 2 }}px);">
+  <view style="flex: auto; height: calc(100% - {{ navbarInfo.topGap * 2 }}px); padding-right: {{ navbarInfo.rightWidth }}px;">
     <slot />
   </view>
 
-  <image wx:if="{{ title === 'logo' }}" class="logo" src="/image/logo.png" mode="heightFix" style="height: calc(100% - {{ topGap * 2 }}px)" />
+  <image wx:if="{{ title === 'logo' }}" class="logo" src="/image/logo.png" mode="heightFix" style="height: calc(100% - {{ navbarInfo.topGap * 2 }}px)" />
   <view wx:elif="{{ title }}" class="title text-overflow-1" style="max-width: {{ navbarInfo.windowWidth - (navbarInfo.rightWidth) * 2 }}px;">{{ title }}</view>
 
 </view>
+<view style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px;" wx:if="{{ nav }}" />
 
-<view style="height: {{ navbarInfo.navHeight }}px; top: {{ navbarInfo.statusBarHeight }}px;"  wx:if="{{ nav }}" />
+<view
+  wx:if="{{ !isTabPage }}"
+  style="height: {{ navbarInfo.navHeight }}px; width: 26px; top: {{ navbarInfo.statusBarHeight }}px;"
+  class="flex-center fixed"
+  bindtap="goBack"
+  catchtouchmove="noop"
+>
+  <image src="/image/icon-back.svg" class="icon-back" />
+</view>
