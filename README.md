@@ -24,6 +24,10 @@
 
 列表 store 可继承使用
 
+## 命名规范
+
+- 文件/文件夹命名：单数小写、中划线分割、构造函数的文件首字母大写(eg: Item-detail-store.js)
+
 ## 注意事项
 
 - 修改 Mobx 的 observable 强制使用 action
