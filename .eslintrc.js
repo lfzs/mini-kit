@@ -35,7 +35,7 @@ module.exports = {
     'for-direction': 2,
     'func-call-spacing': 2,
     'generator-star-spacing': [2, 'after'],
-    'indent': [2, 2],
+    'indent': [2, 2, { 'SwitchCase': 1 }],
     'keyword-spacing': 2,
     'key-spacing': 2,
     'linebreak-style': 2,

@@ -7,29 +7,23 @@ let CTX
 export default function canvas(canvasId, config = []) {
   CTX = wx.createCanvasContext(canvasId)
 
-  config.forEach(configItem => {
-    switch (configItem && configItem.type.toLowerCase()) {
-    case 'image':
-      drawImage(configItem)
-      break
-    case 'text':
-      drawTextLine(configItem)
-      break
-    case 'background':
-      drawBackground(configItem)
-      break
+  config.forEach(item => {
+    const type = item.type?.toLowerCase()
+    switch (type) {
+      case 'image':
+        drawImage(item)
+        break
+      case 'text':
+        drawText(item)
+        break
+      case 'background':
+        drawBackground(item)
+        break
     }
   })
 
   return new Promise((resolve, reject) => {
-    CTX.draw(false, () => {
-      wx.canvasToTempFilePath({
-        canvasId,
-        quality: 1,
-        success: resolve,
-        fail: reject,
-      })
-    })
+    CTX.draw(false, () => wx.canvasToTempFilePath({ canvasId, quality: 1, success: resolve, fail: reject }))
   })
 }
 
@@ -51,7 +45,7 @@ function drawImage(config) {
   }
 }
 
-function drawTextLine(config) {
+function drawText(config) {
   const { text, top, left, maxWidth, fontSize, color, textAlign = 'left', baseline = 'top' } = config
   CTX.setFontSize(fontSize)
   CTX.setTextAlign(textAlign)
@@ -60,10 +54,10 @@ function drawTextLine(config) {
 
   const { width } = CTX.measureText(text)
   if (!maxWidth || width < maxWidth) return CTX.fillText(text, left, top)
-  drawTextLines(config)
+  drawTextLine(config)
 }
 
-function drawTextLines(config) {
+function drawTextLine(config) {
   const { text, top, left, maxWidth, lineHeight, maxLine = 1 } = config
 
   const lines = [''] // 每一行的文字
