@@ -3,16 +3,16 @@ import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage } from '@util
 
 export default new class {
   @observable language = ''
-  default = 'zh' // 编码默认配置的语言
+  #default = 'zh' // 编码默认配置的语言
 
-  needUpdateNavigationBar = false // 是否需要更新标题
-  needUpdateTabBar = false // 是否需要更新 tabbar
+  #needUpdateNavigationBar = false // 是否需要更新标题
+  #needUpdateTabBar = false // 是否需要更新 tabbar
 
   @action
   init() {
     const prev = wx.getStorageSync(LANGUAGE)
-    this.language = prev || this.default
-    prev && (prev !== this.default) && this.needUpdate()
+    this.language = prev || this.#default
+    prev && (prev !== this.#default) && this._needUpdate()
   }
 
   @action
@@ -20,23 +20,23 @@ export default new class {
     if (language === this.language) return
     this.language = language
     wx.setStorage({ key: LANGUAGE, data: language })
-    this.needUpdate()
+    this._needUpdate()
   }
 
-  needUpdate() {
-    this.needUpdateNavigationBar = true
-    this.needUpdateTabBar = true
+  _needUpdate() {
+    this.#needUpdateNavigationBar = true
+    this.#needUpdateTabBar = true
   }
 
   setTabbar() {
-    if (this.needUpdateTabBar && isTabPage()) {
+    if (this.#needUpdateTabBar && isTabPage()) {
       tabPages.forEach((tab, index) => wx.setTabBarItem({ index, text: this.t(`tab.${getCurrentPageRoute()}`) }))
-      this.needUpdateTabBar = false
+      this.#needUpdateTabBar = false
     }
   }
 
   setCurrentTitle() {
-    if (this.needUpdateNavigationBar) {
+    if (this.#needUpdateNavigationBar) {
       wx.setNavigationBarTitle({ title: this.t(getCurrentPageRoute()) })
     }
   }

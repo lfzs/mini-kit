@@ -1,6 +1,5 @@
 // 自定义导航
-import { uiStore } from '@store'
-import { goBack, isTabPage, APP_NAME } from '@util'
+import { goBack, isTabPage, APP_NAME, ui } from '@util'
 
 Component({
 
@@ -28,9 +27,8 @@ Component({
     noop() {},
 
     init() {
-      uiStore.setNavbarInfo()
       this.setData({
-        navbarInfo: uiStore.navbarInfo,
+        navbarInfo: ui.getNavbarInfo(),
         isTabPage: isTabPage(),
       })
     },

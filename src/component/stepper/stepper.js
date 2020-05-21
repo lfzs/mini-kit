@@ -30,7 +30,8 @@ Component({
     onBlur(e) {
       const { value, max, min } = this.data
       const newVal = parseInt(e.detail.value)
-      if (newVal && (newVal !== value) && (newVal <= max) && (newVal >= min)) {
+      if (newVal === value) return
+      if (newVal && (newVal <= max) && (newVal >= min)) {
         this.triggerEvent('change', newVal)
       } else {
         this.setData({ value })

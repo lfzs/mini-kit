@@ -14,8 +14,8 @@ export function isTabPage(url = getCurrentPageRoute()) {
 }
 
 export function getCurrentPageRoute() {
-  const page = getCurrentPages().pop()
-  return page.route
+  const { route } = getCurrentPages().pop()
+  return `/${route}`
 }
 
 export function getPrevPage() {
