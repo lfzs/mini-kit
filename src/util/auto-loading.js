@@ -11,7 +11,7 @@ async function loading(promise, title = '加载中', successText, failText) {
     return res
   } catch (err) {
     wx.hideLoading()
-    const errText = err.message || err.errMsg || '请求失败, 请重试'
+    const errText = err.message || err.errMsg || err.error_message || '请求失败, 请重试'
     if (!ignoreErrors.includes(errText)) {
       wx.showModal({
         title: '提示',

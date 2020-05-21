@@ -1,6 +1,5 @@
 // 拦截页面的 onLoad
-import { tokenStore } from '@store'
-import { goHome, autoLoading, wxp, getCurrentPage } from '@util'
+import { goHome, autoLoading, wxp, getCurrentPage, token } from '@util'
 
 Component({
   properties: {},
@@ -19,7 +18,7 @@ Component({
 
   pageLifetimes: {
     show() {
-      this.data.status === 401 && tokenStore.getToken() && this.init() // 其他页面授过权,更新当前页面
+      this.data.status === 401 && token.getToken() && this.init() // 其他页面授过权,更新当前页面
     },
   },
 
@@ -48,7 +47,7 @@ Component({
 
       const { code } = await wxp.login()
       const userInfo = await wxp.getUserInfo()
-      await autoLoading(tokenStore.login(code, userInfo))
+      await autoLoading(token.login(code, userInfo))
       return this.init()
     },
 

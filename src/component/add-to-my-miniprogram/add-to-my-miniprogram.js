@@ -1,6 +1,5 @@
 // 添加到我的小程序
-import { uiStore } from '@store'
-import { ADD_TO_MY_MINIPROGRAM } from '@util'
+import { ADD_TO_MY_MINIPROGRAM, ui } from '@util'
 
 Component({
 
@@ -10,13 +9,12 @@ Component({
 
   lifetimes: {
     ready() {
-      uiStore.setNavbarInfo()
-      const { windowWidth } = uiStore.systemInfo
-      const { right, width } = uiStore.menuButtonInfo
+      const { windowWidth } = ui.getSystemInfo()
+      const { right, width } = ui.getMenuButtonInfo()
       this.setData({
         rightGap: windowWidth - right,
         upRight: Math.floor(3 / 4 * width),
-        totalHeight: this.data.custom ? uiStore.navbarInfo.totalHeight : 0,
+        totalHeight: this.data.custom ? ui.getNavbarInfo().totalHeight : 0,
       })
       this.toggle()
     },
