@@ -63,18 +63,17 @@ function drawTextLine(config) {
   const lines = [''] // 每一行的文字
   let isOver = false // 文字是否多余
 
-  for (let index = 0; index < text.length; index++) {
+  for (const word of text) {
     const last = lines[lines.length - 1]
     const { width } = CTX.measureText(last)
 
-    if (width < maxWidth) {
-      lines[lines.length - 1] = `${last}${text[index]}`
-    } else {
+    if (width < maxWidth) lines[lines.length - 1] = `${last}${word}`
+    else {
       if (lines.length >= maxLine) {
         isOver = true
         break
       }
-      lines.push(text[index])
+      lines.push(word)
     }
   }
 
