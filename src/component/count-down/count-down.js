@@ -3,6 +3,7 @@ Component({
   properties: {
     end: String,
     now: String,
+    unit: String,
   },
 
   data: {
