@@ -45,10 +45,7 @@ function handleError(err) {
   console.log(color.red('=====================  Error End  ====================='))
   /* eslint-enable */
 
-  notifier.notify({
-    title: `${err.plugin}错误`,
-    message: err.fileName,
-  })
+  notifier.notify({ title: `${err.plugin}错误`, message: err.fileName })
   this.emit('end')
 }
 
@@ -71,8 +68,7 @@ const getNpm = function() {
   return () => through.obj((file, encoding, callback) => {
     if (!file.isBuffer()) return callback(null, file)
     const contents = file.contents.toString()
-
-    const zIndex = path.relative(file.dirname, file.base).replace(/\\/g, '/')
+    const zIndex = path.relative(file.dirname, file.base).split(path.sep).join('/')
     const newContents = contents.replace(/require\("(?!\.)/g, `require("${zIndex || '.'}/`) // 非形如 ./ ../ 开头
     file.contents = Buffer.from(newContents)
 
