@@ -2,7 +2,10 @@
 Component({
   properties: {
     value: Number,
-    max: Number,
+    max: {
+      type: Number,
+      value: Infinity,
+    },
     min: {
       type: Number,
       value: 1,
