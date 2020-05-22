@@ -149,14 +149,11 @@ const API = [
   'navigateBack',
 ]
 
-function promisifyAll(wx = {}, wxp = {}) {
+function promisifyAll(wx, wxp) {
   for (const api of API) {
     const isFn = typeof wx[api] === 'function'
-    if (isFn) {
-      wxp[api] = (args = {}) => new Promise((resolve, reject) => wx[api]({ ...args, success: resolve, fail: reject }))
-    } else {
-      console.log(`注意：wx.${api} 不是函数，已跳过`) // eslint-disable-line no-console
-    }
+    if (isFn) wxp[api] = (args = {}) => new Promise((resolve, reject) => wx[api]({ ...args, success: resolve, fail: reject }))
+    else console.log(`注意：wx.${api} 不是函数，已跳过`) // eslint-disable-line no-console
   }
 }
 
