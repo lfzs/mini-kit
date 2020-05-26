@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development gulp dev",
-    "staging": "cross-env NODE_ENV=staging gulp build",
-    "build": "cross-env NODE_ENV=production gulp build",
-    "deploy:staging": "node script/miniprogram-ci.js staging",
-    "deploy:production": "node script/miniprogram-ci.js production"
+    "start": "yarn start:weixin",
+    "start:weixin": "cross-env NODE_ENV=development PLATFORM=WEIXIN gulp dev",
+    "staging:weixin": "cross-env NODE_ENV=staging PLATFORM=WEIXIN gulp build",
+    "build:weixin": "cross-env NODE_ENV=production PLATFORM=WEIXIN gulp build",
+    "start:alipay": "cross-env NODE_ENV=development PLATFORM=ALIPAY gulp dev",
+    "staging:alipay": "cross-env NODE_ENV=staging PLATFORM=ALIPAY gulp build",
+    "build:alipay": "cross-env NODE_ENV=build PLATFORM=ALIPAY gulp build",
+    "deploy:staging:weixin": "cross-env NODE_ENV=staging node script/miniprogram-ci.js",
+    "deploy:production:weixin": "cross-env NODE_ENV=production node script/miniprogram-ci.js"
   },
   "husky": {
     "hooks": {
@@ -48,6 +52,7 @@
     "gulp-if": "^3.0.0",
     "gulp-less": "^4.0.1",
     "gulp-postcss": "^8.0.0",
+    "gulp-preprocess": "^3.0.3",
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-stylelint": "^13.0.0",

@@ -1,5 +1,5 @@
 // 拦截页面的 onLoad
-import { goHome, autoLoading, wxp, getCurrentPage, token } from '@util'
+import { goHome, autoLoading, g, getCurrentPage, token } from '@util'
 
 Component({
   properties: {},
@@ -42,12 +42,13 @@ Component({
       this.setData({ loading: false })
     },
 
+    @autoLoading
     async handleAuth(e) {
       if (!e.detail.userInfo) return
 
-      const { code } = await wxp.login()
-      const userInfo = await wxp.getUserInfo()
-      await autoLoading(token.login(code, userInfo))
+      const { code } = await g.p.login()
+      const userInfo = await g.p.getUserInfo()
+      await token.login(code, userInfo)
       return this.init()
     },
 

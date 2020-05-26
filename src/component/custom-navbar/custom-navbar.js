@@ -1,5 +1,5 @@
 // 自定义导航
-import { goBack, isTabPage, APP_NAME, ui } from '@util'
+import { goBack, isTabPage, APP_NAME, ui, g } from '@util'
 
 Component({
 
@@ -11,7 +11,7 @@ Component({
   },
 
   observers: {
-    'title': function(title) { wx.setNavigationBarTitle({ title }) },
+    'title': function(title) { g.setNavigationBarTitle({ title }) },
   },
 
   lifetimes: {

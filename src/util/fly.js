@@ -1,11 +1,11 @@
 import Fly from 'flyio/dist/npm/fly'
 import EngineWrapper from 'flyio/dist/npm/engine-wrapper'
-import { baseURL, wxp, token } from '@util'
+import { baseURL, g, token } from '@util'
 import _ from 'lodash'
 
 // 微信小程序的 adapter
 function adapter(request, responseCallback) {
-  wx.request({
+  g.request({
     method: request.method,
     url: request.url,
     dataType: request.dataType || undefined,
@@ -46,14 +46,14 @@ async function handleError(err) {
     // 向后台换取 token 的接口是否需要用加密数据。保留一种即可。需要
     const canGetUserInfo = await token.canGetUserInfo()
     if (canGetUserInfo) {
-      const { code } = await wxp.login()
-      const userInfo = await wxp.getUserInfo()
+      const { code } = await g.p.login()
+      const userInfo = await g.p.getUserInfo()
       await token.login(code, userInfo)
       return fly.request(err.request)
     }
 
     // 不需要
-    // const { code } = await wxp.login()
+    // const { code } = await g.p.login()
     // await token.login(code)
     // return fly.request(err.request)
   }

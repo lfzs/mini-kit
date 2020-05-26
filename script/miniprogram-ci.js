@@ -1,10 +1,10 @@
 const { execSync } = require('child_process')
 const fs = require('fs')
 
-const isProduction = process.argv[2] === 'production'
+const isProduction = process.env.NODE_ENV === 'production'
 
 execSync('yarn install')
-execSync(isProduction ? 'yarn build' : 'yarn staging')
+execSync(isProduction ? 'yarn build:weixin' : 'yarn staging:weixin')
 
 const ci = require('miniprogram-ci')
 const dayjs = require('dayjs')

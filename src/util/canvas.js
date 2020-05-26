@@ -2,10 +2,11 @@
   在 wxml 中需要提前声明
   <canvas canvas-id="canvas" style="width: 375px; height: 375px; background-color: red;"/>
 */
+import { g } from '@util'
 
 let CTX
 export default function canvas(canvasId, config = []) {
-  CTX = wx.createCanvasContext(canvasId)
+  CTX = g.createCanvasContext(canvasId)
 
   config.forEach(item => {
     const type = item.type?.toLowerCase()
@@ -23,12 +24,12 @@ export default function canvas(canvasId, config = []) {
   })
 
   return new Promise((resolve, reject) => {
-    CTX.draw(false, () => wx.canvasToTempFilePath({ canvasId, quality: 1, success: resolve, fail: reject }))
+    CTX.draw(false, () => g.canvasToTempFilePath({ canvasId, quality: 1, success: resolve, fail: reject }))
   })
 }
 
 function drawImage(config) {
-  // info 为 wx.getImageInfo 的信息，即图片的真实宽高
+  // info 为 g.getImageInfo 的信息，即图片的真实宽高
   const { top, left, width, height, url, info } = config
   if (info) {
     // aspectFill 模式，水平100%，垂直居中截取

@@ -1,3 +1,5 @@
+import { g } from '@util'
+
 export default new class {
   #systemInfo = {}
   #menuButtonInfo = {} // 右上角胶囊信息
@@ -12,11 +14,11 @@ export default new class {
     if (this.#systemInfo.platform) return
 
     try {
-      this.#systemInfo = wx.getSystemInfoSync()
+      this.#systemInfo = g.getSystemInfoSync()
     } catch (error) {
-      this.#systemInfo = wx.getSystemInfoSync()
+      this.#systemInfo = g.getSystemInfoSync()
     } finally {
-      this.#systemInfo.platform || (this.#systemInfo = wx.getSystemInfoSync())
+      this.#systemInfo.platform || (this.#systemInfo = g.getSystemInfoSync())
     }
   }
 
@@ -24,11 +26,11 @@ export default new class {
     if (this.#menuButtonInfo.height) return
 
     try {
-      this.#menuButtonInfo = wx.getMenuButtonBoundingClientRect()
+      this.#menuButtonInfo = g.getMenuButtonBoundingClientRect()
     } catch (error) {
-      this.#menuButtonInfo = wx.getMenuButtonBoundingClientRect()
+      this.#menuButtonInfo = g.getMenuButtonBoundingClientRect()
     } finally {
-      this.#menuButtonInfo.height || (this.#menuButtonInfo = wx.getMenuButtonBoundingClientRect())
+      this.#menuButtonInfo.height || (this.#menuButtonInfo = g.getMenuButtonBoundingClientRect())
     }
   }
 

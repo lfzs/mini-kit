@@ -1,5 +1,5 @@
-import { wxp } from '@util'
+import { g } from '@util'
 
 export default function modal(options) {
-  return (typeof options === 'string') ? wxp.showModal({ title: '提示', content: options }) : wxp.showModal({ title: '提示', ...options })
+  return (typeof options === 'string') ? g.p.showModal({ title: '提示', content: options }) : g.p.showModal({ title: '提示', ...options })
 }

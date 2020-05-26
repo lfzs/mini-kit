@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage } from '@util'
+import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage, g } from '@util'
 
 export default new class {
   @observable language = ''
@@ -10,7 +10,7 @@ export default new class {
 
   @action
   init() {
-    const prev = wx.getStorageSync(LANGUAGE)
+    const prev = g.getStorageSync(LANGUAGE)
     this.language = prev || this.#default
     prev && (prev !== this.#default) && this._needUpdate()
   }
@@ -19,7 +19,7 @@ export default new class {
   setLanguage(language) {
     if (language === this.language) return
     this.language = language
-    wx.setStorage({ key: LANGUAGE, data: language })
+    g.setStorage({ key: LANGUAGE, data: language })
     this._needUpdate()
   }
 
@@ -30,14 +30,14 @@ export default new class {
 
   setTabbar() {
     if (this.#needUpdateTabBar && isTabPage()) {
-      tabPages.forEach((tab, index) => wx.setTabBarItem({ index, text: this.t(`tab.${getCurrentPageRoute()}`) }))
+      tabPages.forEach((tab, index) => g.setTabBarItem({ index, text: this.t(`tab.${getCurrentPageRoute()}`) }))
       this.#needUpdateTabBar = false
     }
   }
 
   setCurrentTitle() {
     if (this.#needUpdateNavigationBar) {
-      wx.setNavigationBarTitle({ title: this.t(getCurrentPageRoute()) })
+      g.setNavigationBarTitle({ title: this.t(getCurrentPageRoute()) })
     }
   }
 

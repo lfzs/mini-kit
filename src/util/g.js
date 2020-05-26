@@ -1,5 +1,6 @@
-// https://github.com/wechat-miniprogram/miniprogram-api-promise
-const API = [
+// api 统一使用
+const methods = [
+  // https://github.com/wechat-miniprogram/miniprogram-api-promise/blob/master/src/method.js
   'canvasGetImageData',
   'canvasPutImageData',
   'canvasToTempFilePath',
@@ -149,15 +150,26 @@ const API = [
   'navigateBack',
 ]
 
-function promisifyAll(wx, wxp) {
-  for (const api of API) {
-    const isFn = typeof wx[api] === 'function'
-    if (isFn) wxp[api] = (args = {}) => new Promise((resolve, reject) => wx[api]({ ...args, success: resolve, fail: reject }))
-    else console.log(`注意：wx.${api} 不是函数，已跳过`) // eslint-disable-line no-console
+function promisifyAll(target) {
+  target.p = {}
+  for (const method of methods) {
+    const isFn = typeof target[method] === 'function'
+
+    if (isFn) target.p[method] = (args = {}) => new Promise((resolve, reject) => target[method]({ ...args, success: resolve, fail: reject }))
+    else console.warn(`注意：target.${method} 不是函数，已跳过`) // eslint-disable-line no-console
   }
 }
 
-const wxp = {}
-promisifyAll(wx, wxp)
-export default wxp
+const g =
+// @if PLATFORM='WEIXIN'
+wx // eslint-disable-line no-undef
+// @endif
+// @if PLATFORM='ALIPAY'
+my // eslint-disable-line no-undef
+// @endif
+
+promisifyAll(g)
+export default g
+
+// g.name() 调用当前平台的 api, g.p.name() 调用当前平台的异步 api
 

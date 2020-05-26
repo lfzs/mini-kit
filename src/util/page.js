@@ -1,5 +1,5 @@
 import { autorun, toJS, configure } from 'mobx'
-import { homePage, nav } from '@util'
+import { homePage, nav, g } from '@util'
 
 configure({ enforceActions: 'always' })
 
@@ -41,7 +41,7 @@ Page = (config = {}) => {
 
     previewImage(e) {
       const { url, urls } = e.target.dataset
-      wx.previewImage({ current: url, urls: urls ? urls : [url] })
+      g.previewImage({ current: url, urls: urls ? urls : [url] })
     },
 
     nav(e) {

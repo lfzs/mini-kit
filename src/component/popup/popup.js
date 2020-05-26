@@ -1,6 +1,6 @@
 // 图片弹窗
 
-import { apiIsAuth, nav } from '@util'
+import { apiIsAuth, nav, g } from '@util'
 
 Component({
   properties: {
@@ -18,13 +18,13 @@ Component({
 
     onImg() {
       const { img, url } = this.data
-      url ? nav(url) : wx.previewImage({ urls: [img] })
+      url ? nav(url) : g.previewImage({ urls: [img] })
     },
 
     async onSave() {
       const isAuth = await apiIsAuth('saveImageToPhotosAlbum')
       if (isAuth) {
-        wx.saveImageToPhotosAlbum({ filePath: this.data.img }) // filePath 需要是临时路径
+        g.saveImageToPhotosAlbum({ filePath: this.data.img }) // filePath 需要是临时路径
         this.onClose()
       }
     },
