@@ -1,5 +1,5 @@
 // 自定义页面
-import { nav, fly, toast } from '@util'
+import { nav, fly, toast, g } from '@util'
 
 Component({
 
@@ -34,7 +34,7 @@ Component({
 
     copyText(e) {
       const { text } = e.currentTarget.dataset
-      wx.setClipboardData({ data: text, success: () => toast('复制成功') })
+      g.setClipboardData({ data: text, success: () => toast('复制成功') })
     },
 
     async getItemsById(cpl) {

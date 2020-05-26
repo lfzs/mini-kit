@@ -1,5 +1,5 @@
 // 添加到我的小程序
-import { ADD_TO_MY_MINIPROGRAM, ui } from '@util'
+import { ADD_TO_MY_MINIPROGRAM, ui, g } from '@util'
 
 Component({
 
@@ -32,11 +32,11 @@ Component({
     show() {
       setTimeout(() => this.setData({ show: true }), 5000)
       setTimeout(() => this.setData({ show: false }), 10000)
-      wx.setStorage({ key: ADD_TO_MY_MINIPROGRAM, data: Date.now() })
+      g.setStorage({ key: ADD_TO_MY_MINIPROGRAM, data: Date.now() })
     },
 
     toggle() {
-      const timestamp = wx.getStorageSync(ADD_TO_MY_MINIPROGRAM)
+      const timestamp = g.getStorageSync(ADD_TO_MY_MINIPROGRAM)
       if (!timestamp) this.show()
     },
   },

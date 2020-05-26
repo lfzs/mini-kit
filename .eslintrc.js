@@ -73,7 +73,6 @@ module.exports = {
 
   'globals': {
     'App': true,
-    'wx': true,
     'getApp': true,
     'Page': true,
     'Component': true,

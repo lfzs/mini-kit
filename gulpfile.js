@@ -10,6 +10,7 @@ const notifier = require('node-notifier')
 const stylelint = require('gulp-stylelint')
 const less = require('gulp-less')
 const rename = require('gulp-rename')
+const preprocess = require('gulp-preprocess')
 const postcss = require('gulp-postcss')
 const px2units = require('postcss-px2units')
 const autoprefixer = require('autoprefixer')
@@ -56,6 +57,7 @@ function bundleJS() {
     .pipe(eslint.format())
     .pipe(gulpif(!isDev, eslint.failAfterError()))
     .pipe(gulpif(!isDev, eslint.results(({ warningCount }) => warningCount > 0 && process.exit(1))))
+    .pipe(preprocess())
     .pipe(sourcemaps.init())
     .pipe(babel())
     .pipe(sourcemaps.write('.'))
@@ -90,6 +92,7 @@ const getNpm = function() {
 function bundleLess() {
   return gulp.src(paths.less)
     .pipe(changed('dist', { extension: '.wxss' }))
+    .pipe(preprocess())
     .pipe(stylelint({
       failAfterError: !isDev,
       reporters: [{ formatter: 'string', console: true }],
@@ -105,6 +108,7 @@ function bundleLess() {
 
 function copyWxml() {
   return gulp.src(paths.wxml)
+    .pipe(preprocess())
     .pipe(changed('dist'))
     .on('error', handleError)
     .pipe(gulp.dest('dist'))
@@ -112,6 +116,7 @@ function copyWxml() {
 
 function copyOther() {
   return gulp.src(paths.other)
+    .pipe(preprocess())
     .pipe(changed('dist'))
     .on('error', handleError)
     .pipe(gulp.dest('dist'))

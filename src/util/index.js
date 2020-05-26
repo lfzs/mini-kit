@@ -1,6 +1,6 @@
 export fetchAction from './fetch-action'
 export { host, baseURL } from './env'
-export wxp from './wxp'
+export g from './g'
 export apiIsAuth from './api-is-auth'
 export * from './constant'
 export { nav, goBack, goHome, homePage, getCurrentPage, isTabPage, canBack, tabPages, getCurrentPageRoute, getPrevPage, redirect } from './nav'

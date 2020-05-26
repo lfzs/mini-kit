@@ -1,4 +1,4 @@
-import { autoLoading, toast } from '@util'
+import { autoLoading, toast, g } from '@util'
 import { configStore } from '@store'
 
 // 上传图片
@@ -23,7 +23,7 @@ Component({
     chooseImage() {
       const { limit, images, size } = this.data
       const count = limit - images.length
-      wx.chooseImage({
+      g.chooseImage({
         count: Math.min(count, 10),
         sizeType: ['compressed'],
         success: async({ tempFiles }) => {
@@ -49,7 +49,7 @@ Component({
 
     previewImage(e) {
       const { url } = e.currentTarget.dataset
-      wx.previewImage({ urls: [url] })
+      g.previewImage({ urls: [url] })
     },
   },
 })

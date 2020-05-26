@@ -1,4 +1,4 @@
-import { wxp, modal } from '@util'
+import { g, modal } from '@util'
 
 const API_SCOP = {
   // getUserInfo: ['scope.userInfo', '用户信息'], 必须要按钮触发
@@ -24,13 +24,13 @@ const API_SCOP = {
 export default async function(apiName) {
 
   try {
-    await wxp.authorize({ scope: API_SCOP[apiName][0] })
+    await g.p.authorize({ scope: API_SCOP[apiName][0] })
     return true
   } catch ({ errMsg }) {
     if (errMsg.indexOf('authorize:fail') > -1) { // 拒绝了
       const { confirm } = await modal({ title: '提示', content: `授权失败，请在设置中打开${API_SCOP[apiName][1]}开关`, confirmText: '去打开' })
       if (confirm) {
-        const { authSetting } = await wxp.openSetting()
+        const { authSetting } = await g.p.openSetting()
         if (authSetting[API_SCOP[apiName][0]]) return true
       }
     }

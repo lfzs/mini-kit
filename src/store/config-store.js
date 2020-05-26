@@ -1,5 +1,5 @@
 import { observable, flow, action } from 'mobx'
-import { fetchAction, fly, wxp } from '@util'
+import { fetchAction, fly, g } from '@util'
 
 export default new class {
   @observable data = {}
@@ -27,7 +27,7 @@ export default new class {
     const { bucket_domain, token } = this.qiniuMeta
 
     try {
-      const { data } = await wxp.uploadFile({ url: 'https://upload-z2.qiniup.com', name: 'file', filePath, formData: { token } })
+      const { data } = await g.p.uploadFile({ url: 'https://upload-z2.qiniup.com', name: 'file', filePath, formData: { token } })
       const key = JSON.parse(data).key
       return `https://${bucket_domain}/${key}`
     } catch (error) {

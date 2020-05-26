@@ -1,3 +1,5 @@
+import { g } from '@util'
+
 export const tabPages = [
   '/page/home/home',
   '/page/mine/mine',
@@ -24,7 +26,7 @@ export function getPrevPage() {
 }
 
 export function goHome() {
-  wx.switchTab({ url: homePage })
+  g.switchTab({ url: homePage })
 }
 
 export function canBack() {
@@ -32,18 +34,18 @@ export function canBack() {
 }
 
 export function goBack() {
-  canBack() ? wx.navigateBack() : goHome()
+  canBack() ? g.navigateBack() : goHome()
 }
 
 export function redirect(url) {
-  wx.redirectTo({ url })
+  g.redirectTo({ url })
 }
 
 export function nav(url) {
   if (!url) return goHome()
-  if (isTabPage(url)) return wx.switchTab({ url })
+  if (isTabPage(url)) return g.switchTab({ url })
 
   const pages = getCurrentPages()
   const type = pages.length < 10 ? 'navigateTo' : 'redirectTo'
-  wx[type]({ url })
+  g[type]({ url })
 }
