@@ -7,18 +7,15 @@ Component({
     custom: Boolean, // 当前页面是否是自定义导航
   },
 
-  lifetimes: {
-    ready() {
-      const { windowWidth } = ui.getSystemInfo()
-      const { right, width } = ui.getMenuButtonInfo()
-      this.setData({
-        rightGap: windowWidth - right,
-        upRight: Math.floor(3 / 4 * width),
-        totalHeight: this.data.custom ? ui.getNavbarInfo().totalHeight : 0,
-      })
-      this.toggle()
-    },
-
+  ready() {
+    const { windowWidth } = ui.getSystemInfo()
+    const { right, width } = ui.getMenuButtonInfo()
+    this.setData({
+      rightGap: windowWidth - right,
+      upRight: Math.floor(3 / 4 * width),
+      totalHeight: this.data.custom ? ui.getNavbarInfo().totalHeight : 0,
+    })
+    this.toggle()
   },
 
   data: {

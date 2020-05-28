@@ -24,7 +24,7 @@ const paths = {
   less: ['src/**/*.less'],
   wxml: ['src/**/*.wxml'],
   wxs: ['src/**/*.wxs'],
-  other: ['src/**/*.json', 'src/**/*.wxss', 'src/**/*.wxs', 'src/**/*.{png,svg,jpg,jpeg,gif}'],
+  other: ['src/**/*.json', 'src/**/*.{png,svg,jpg,jpeg,gif}'],
 }
 
 const platform = {
@@ -66,7 +66,8 @@ const platform = {
       },
 
       'wxs': {
-        'wxs': 'import-sjs',
+        '<wxs': '<import-sjs',
+        '.wxs': '.sjs',
         'module': 'name',
         'src': 'from',
       },
@@ -177,7 +178,7 @@ function fuckml() {
       let newStr = match
 
       Object.entries(platform.attrs).map(([key, value]) => {
-        if (typeof value === 'string') newStr = newStr.replace(key, value)
+        if (typeof value === 'string') newStr = newStr.replace(key, value) // key 等于号前面的 key
         else {
           const tagName = match.replace(/\s/g, ' ').split(' ')[0].slice(1)
           const tagAttrs = platform.attrs[tagName]
@@ -196,7 +197,7 @@ function fuckml() {
 function copyWxs() {
   return gulp.src(paths.wxs)
     .pipe(changed(platform.dist, { extension: platform.wxs }))
-    .pipe(preprocess())
+    .pipe(preprocess({ extension: 'javascript' }))
     .pipe(changed(platform.dist))
     .on('error', handleError)
     .pipe(rename({ extname: platform.wxs }))

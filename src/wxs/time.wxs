@@ -27,7 +27,16 @@ function formatSecond(second, unit) {
   return unit.replace('DD', DD).replace('HH', HH).replace('mm', mm).replace('ss', ss)
 }
 
+// @if PLATFORM='weixin'
 module.exports = {
   formatDate: formatDate,
   formatSecond: formatSecond,
 }
+// @endif
+
+// @if PLATFORM='alipay'
+export default {
+  formatDate: formatDate,
+  formatSecond: formatSecond,
+}
+// @endif

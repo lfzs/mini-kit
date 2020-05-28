@@ -2,8 +2,6 @@
 import { mineStore } from '@store'
 
 Component({
-  externalClasses: ['custom-class'],
-
   properties: {
     text: {
       type: String,
