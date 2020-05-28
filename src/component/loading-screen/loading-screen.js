@@ -10,10 +10,8 @@ Component({
     errorText: '',
   },
 
-  lifetimes: {
-    ready() {
-      return this.init()
-    },
+  ready() {
+    return this.init()
   },
 
   pageLifetimes: {

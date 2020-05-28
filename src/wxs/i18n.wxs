@@ -10,7 +10,15 @@ var LOCAL = {
   },
 }
 
-module.exports = function(key, language, args) {
+function t(key, language, args) {
   var value = LOCAL[language][key]
   return typeof value === 'function' ? value(args) : value
 }
+
+// @if PLATFORM='weixin'
+module.exports = t
+// @endif
+
+// @if PLATFORM='alipay'
+export default t
+// @endif

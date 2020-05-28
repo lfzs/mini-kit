@@ -15,6 +15,7 @@
   "preloadRule": {
     "page/mine/mine": { "network": "all", "packages": ["page-order"] }
   },
+  // @if PLATFORM='weixin'
   "window": {
     "navigationBarTitleText": "mini-app",
     "navigationBarTextStyle": "white",
@@ -40,21 +41,46 @@
     "list": [
       {
         "pagePath": "page/home/home",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "",
+        "selectedIconPath": ""
       },{
         "pagePath": "page/mine/mine",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "",
+        "selectedIconPath": ""
       }
     ]
   },
-  "style": "v2",
-  "usingComponents": {
-    "loading-screen": "/component/loading-screen/loading-screen",
-    "custom-page": "/component/custom-page/custom-page",
-    "item-card": "/component/item-card/item-card",
-    "img-icon": "/component/img-icon/img-icon",
-    "popup": "/component/popup/popup",
-    "popup-share": "/component/popup-share/popup-share",
-    "loading-more": "/component/loading-more/loading-more"
+  "style": "v2"
+  // @endif
+  // @if PLATFORM='alipay'
+  "window": {
+    "defaultTitle": "mini-app",
+    "titleBarColor": "#000",
+
+    "backgroundColor": "#f4f4f4",
+    "backgroundImageUrl": "",
+
+    "onReachBottomDistance": 200
+  },
+  "tabBar": {
+    "textColor": "#999",
+    "selectedColor": "#fff",
+    "backgroundColor": "#000",
+    "list": [
+      {
+        "pagePath": "page/home/home",
+        "name": "首页",
+        "icon": "",
+        "activeIcon": ""
+      },{
+        "pagePath": "page/mine/mine",
+        "name": "我的",
+        "icon": "",
+        "activeIcon": ""
+      }
+    ]
   }
+  // @endif
 }

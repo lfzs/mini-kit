@@ -3,7 +3,15 @@ var obj = {
   'age': function(num) { return num + '岁' }
 }
 
-module.exports = function(key, args) {
+function t(key, args) {
   var value = obj[key]
   return typeof value === 'function' ? value(args) : value
 }
+
+// @if PLATFORM='weixin'
+module.exports = t
+// @endif
+
+// @if PLATFORM='alipay'
+export default t
+// @endif

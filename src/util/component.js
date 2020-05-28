@@ -47,7 +47,7 @@ Component = (config = {}) => {
 function weixinProperties2alipayProps(weixinProperties) {
   // 支付宝不支持微信的 type optionalTypes observer
   const props = {}
-  Object.keys(weixinProperties).map(key => props.key = weixinProperties[key].value)
+  Object.keys(weixinProperties).map(key => props.key = weixinProperties[key]?.value)
   this.properties = props
   return props
 }
