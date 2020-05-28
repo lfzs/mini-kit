@@ -161,10 +161,10 @@ function promisifyAll(target) {
 }
 
 const g =
-// @if PLATFORM='WEIXIN'
+// @if PLATFORM='weixin'
 wx // eslint-disable-line no-undef
 // @endif
-// @if PLATFORM='ALIPAY'
+// @if PLATFORM='alipay'
 my // eslint-disable-line no-undef
 // @endif
 

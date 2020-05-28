@@ -1,6 +1,6 @@
 // 图片弹窗
 
-import { apiIsAuth, nav, g } from '@util'
+import { authApi, nav, g } from '@util'
 
 Component({
   properties: {
@@ -22,11 +22,9 @@ Component({
     },
 
     async onSave() {
-      const isAuth = await apiIsAuth('saveImageToPhotosAlbum')
-      if (isAuth) {
-        g.saveImageToPhotosAlbum({ filePath: this.data.img }) // filePath 需要是临时路径
-        this.onClose()
-      }
+      await authApi('saveImageToPhotosAlbum')
+      g.saveImageToPhotosAlbum({ filePath: this.data.img }) // filePath 需要是临时路径
+      this.onClose()
     },
   },
 

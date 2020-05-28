@@ -8,7 +8,7 @@
 
 - `yarn install && yarn start`
 
-- 使用小程序开发者工具打开当前目录即可
+- 使用微信小程序开发者工具打开当前目录即可
 
 ## util/page.js
 

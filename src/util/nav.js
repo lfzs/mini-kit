@@ -8,7 +8,8 @@ export const tabPages = [
 export const homePage = tabPages[0]
 
 export function getCurrentPage() {
-  return getCurrentPages().pop()
+  const pages = getCurrentPages()
+  return pages[pages.length - 1]
 }
 
 export function isTabPage(url = getCurrentPageRoute()) {
@@ -16,7 +17,16 @@ export function isTabPage(url = getCurrentPageRoute()) {
 }
 
 export function getCurrentPageRoute() {
-  const { route } = getCurrentPages().pop()
+  const currentPage = getCurrentPage()
+
+  const route =
+  // @if PLATFORM='weixin'
+  currentPage.route
+  // @endif
+  // @if PLATFORM='alipay'
+  JSON.stringify(currentPage.__proto__.route)
+  // @endif
+
   return `/${route}`
 }
 
