@@ -1,5 +1,5 @@
 import { autorun, toJS, configure } from 'mobx'
-import { homePage, nav, g } from '@util'
+import { homePage, shareMethod } from '@util'
 
 configure({ enforceActions: 'always' })
 
@@ -10,16 +10,16 @@ Page = (config = {}) => {
 
   const interceptors = {
 
-    onLoad() {
+    onLoad(query) {
       this._disposers = []
-      this.store = (typeof store === 'function') ? store.call(this, this.options) : (store || {})
+      this.store = (typeof store === 'function') ? store.call(this, this.query) : (store || {})
       Object.entries(this.store).forEach(([key, value]) => {
         const disposer = autorun(() => this.setData({ [key]: getProperties(value) }), { name: key })
         this._disposers.push(disposer)
       })
 
       // 挂载到页面 以便 loading-screen 调用
-      this._init = () => onLoad && onLoad.call(this, this.options)
+      this._init = () => onLoad && onLoad.call(this, query)
     },
 
     onUnload() {
@@ -36,22 +36,8 @@ Page = (config = {}) => {
     },
   }
 
-  const utils = {
-    noop() { /** 阻止滚动穿透 */ },
-
-    previewImage(e) {
-      const { url, urls } = e.target.dataset
-      g.previewImage({ current: url, urls: urls ? urls : [url] })
-    },
-
-    nav(e) {
-      const { url } = e.currentTarget.dataset
-      nav(url)
-    },
-  }
-
   delete config.store
-  return oldPage(Object.assign({}, utils, config, interceptors))
+  return oldPage(Object.assign({}, shareMethod, config, interceptors))
 }
 
 function getProperties(store) {
